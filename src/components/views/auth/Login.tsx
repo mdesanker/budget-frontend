@@ -1,13 +1,48 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = formData;
+
+  const formChangeHandler = (e: React.ChangeEvent<any>): void => {
+    const { name, value } = e.target;
+
+    setFormData((prevState) => {
+      return { ...prevState, [name]: value };
+    });
+  };
+
+  const formSubmitHandler = (e: React.ChangeEvent<any>): void => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
   return (
     <main className="main">
       <div className="card">
         <h1 className=" w-full pl-2 text-2xl  pb-4 font-semibold">Log in</h1>
-        <form className="flex flex-col">
-          <input type="email" placeholder="Email" className="input" />
-          <input type="password" placeholder="Password" className="input" />
+        <form className="flex flex-col" onSubmit={formSubmitHandler}>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            placeholder="Email"
+            className="input"
+            onChange={formChangeHandler}
+          />
+          <input
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Password"
+            className="input"
+            onChange={formChangeHandler}
+          />
           <button className="btn">
             <p>Log in</p>
             <div className="border-2 border-fuchsia-700 p-4 rounded-full text-white bg-fuchsia-700">
@@ -30,7 +65,7 @@ const Login = () => {
         </form>
         <p className="text-sm p-4">
           Don't have an account?{" "}
-          <Link to="/register" className="font-semibold text-fuchsia-700">
+          <Link to="/register" className="font-bold text-fuchsia-700">
             Sign up.
           </Link>
         </p>
