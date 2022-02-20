@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.main {
+  @apply h-full w-full flex flex-col justify-center items-center;
+}
+
+.card {
+  @apply bg-white rounded-lg shadow-md relative p-4 flex flex-col items-center;
+}
+
+.input {
+  @apply text-lg outline-none p-2 border-gray-100 border-b-2 mb-4 focus:border-fuchsia-700;
+}
+
+.btn {
+  @apply text-lg flex justify-around items-center font-semibold mb-4;
+}
