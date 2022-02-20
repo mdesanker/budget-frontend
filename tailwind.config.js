@@ -1,7 +1,16 @@
 module.exports = {
   content: ["./public/index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      borderColor: ["responsive", "hover", "focus", "focus-within"],
+      zIndex: {
+        "-1": "-1",
+        1: "1",
+      },
+      transformOrigin: {
+        0: "0%",
+      },
+    },
   },
   plugins: [],
 };
