@@ -51,6 +51,7 @@ const Login = () => {
         </div>
         <form
           className="w-full flex flex-col items-center px-4 py-4"
+          data-testid="form"
           onSubmit={formSubmitHandler}
         >
           <input
