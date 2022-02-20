@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Green from "../../../assets/imgs/green_blob.svg";
+import Pink from "../../../assets/imgs/pink_blob.svg";
+import Purple from "../../../assets/imgs/purple_blob.svg";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -31,8 +34,9 @@ const Login = () => {
       <div className="card">
         <div className="card-header">
           <h1 className="text-4xl font-semibold pb-2">Log in</h1>
-          <p>Welcome back</p>
+          <p className="text-gray-500 text-lg">Welcome back</p>
         </div>
+
         <form
           className="w-full flex flex-col items-center px-4 py-4"
           data-testid="form"
