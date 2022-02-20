@@ -32,55 +32,41 @@ const Login = () => {
         <div className="card-header">
           <h1 className="text-4xl font-semibold pb-2">Log in</h1>
           <p>Welcome back</p>
-          {/* <div className="absolute top-8 right-8">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-12"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"
-              />
-            </svg>
-          </div> */}
         </div>
         <form
           className="w-full flex flex-col items-center px-4 py-4"
           data-testid="form"
           onSubmit={formSubmitHandler}
         >
-          <div className="relative my-4 border-b-2 text-lg focus-within:border-fuchsia-700">
+          <div className="inputContainer">
             <input
               type="email"
               name="email"
               value={email}
               placeholder=" "
-              className="outline-none block w-full appearance-none focus:outline-none bg-transparent"
+              className="input"
               onChange={formChangeHandler}
             />
-            <label
-              htmlFor="email"
-              className="absolute top-0 duration-300 origin-0 -z-1"
-            >
+            <label htmlFor="email" className="inputLabel">
               Email
             </label>
           </div>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            placeholder="Password"
-            className="input"
-            onChange={formChangeHandler}
-          />
-          <button className="btn">
+          <div className="inputContainer">
+            <input
+              type="password"
+              name="password"
+              value={password}
+              placeholder=" "
+              className="input"
+              onChange={formChangeHandler}
+            />
+            <label htmlFor="password" className="inputLabel">
+              Password
+            </label>
+          </div>
+          <button className="btn group">
             <p>Log in</p>
-            <div className="border-2 border-fuchsia-700 p-4 rounded-full text-white bg-fuchsia-700">
+            <div className=" p-5 rounded-full text-white bg-fuchsia-700 group-hover:bg-fuchsia-800  duration-200">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
