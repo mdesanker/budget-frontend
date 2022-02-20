@@ -20,13 +20,39 @@ const Login = () => {
   const formSubmitHandler = (e: React.ChangeEvent<any>): void => {
     e.preventDefault();
     console.log(formData);
+    setFormData({
+      email: "",
+      password: "",
+    });
   };
 
   return (
     <main className="main">
       <div className="card">
-        <h1 className=" w-full pl-2 text-2xl  pb-4 font-semibold">Log in</h1>
-        <form className="flex flex-col" onSubmit={formSubmitHandler}>
+        <div className="card-header">
+          <h1 className="text-4xl font-semibold pb-2">Log in</h1>
+          <p>Welcome back</p>
+          <div className="absolute top-8 right-8">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-12 w-12"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"
+              />
+            </svg>
+          </div>
+        </div>
+        <form
+          className="w-full flex flex-col items-center px-4 py-4"
+          onSubmit={formSubmitHandler}
+        >
           <input
             type="email"
             name="email"
@@ -63,7 +89,7 @@ const Login = () => {
             </div>
           </button>
         </form>
-        <p className="text-sm p-4">
+        <p className="text-sm p-4 mb-4">
           Don't have an account?{" "}
           <Link to="/register" className="font-bold text-fuchsia-700">
             Sign up.

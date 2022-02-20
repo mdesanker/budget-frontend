@@ -3,17 +3,21 @@
 @tailwind utilities;
 
 .main {
-  @apply h-full w-full flex flex-col justify-center items-center;
+  @apply min-h-screen w-full flex flex-col justify-center items-center;
 }
 
 .card {
-  @apply bg-white rounded-lg shadow-md relative p-4 flex flex-col items-center;
+  @apply w-5/6 sm:w-auto bg-white rounded-2xl shadow-lg relative flex flex-col items-center overflow-hidden;
+}
+
+.card-header {
+  @apply w-full bg-fuchsia-900 text-white p-4 pt-16 relative;
 }
 
 .input {
-  @apply text-lg outline-none p-2 border-gray-100 border-b-2 mb-4 focus:border-fuchsia-700;
+  @apply w-full text-lg outline-none px-4 py-2 border-gray-100 border-b-2 my-4 focus:border-fuchsia-700;
 }
 
 .btn {
-  @apply text-lg flex justify-around items-center font-semibold mb-4;
+  @apply w-full sm:w-80 text-lg flex justify-around items-center font-semibold my-4;
 }
