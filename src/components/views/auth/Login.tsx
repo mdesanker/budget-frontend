@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Green from "../../../assets/imgs/green_blob.svg";
-import Pink from "../../../assets/imgs/pink_blob.svg";
-import Purple from "../../../assets/imgs/purple_blob.svg";
 
 const Login = () => {
   const [formData, setFormData] = useState({

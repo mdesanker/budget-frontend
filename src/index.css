@@ -20,7 +20,7 @@
 
 /* INPUT */
 .inputContainer {
-  @apply relative my-6 border-b-2 text-lg focus-within:border-fuchsia-700;
+  @apply relative my-4 border-b-2 text-lg focus-within:border-fuchsia-700;
 }
 
 .input {
