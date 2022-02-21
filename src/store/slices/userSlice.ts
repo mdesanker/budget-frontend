@@ -35,6 +35,32 @@ export const registerUser = createAsyncThunk<string, User>(
   }
 );
 
+export const loginUser = createAsyncThunk<string, User>(
+  "/user/login",
+  async (login, { rejectWithValue }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(login);
+
+    try {
+      const res = await axios.post("/auth/login", body, config);
+
+      console.log(res.data.token);
+      return res.data.token;
+    } catch (err: any) {
+      const errors = err.response.data.errors;
+      for (let error of errors) {
+        console.log(error);
+      }
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 // USER SLICE
 interface UserState {
   token: string | null;
@@ -66,6 +92,17 @@ const userSlice = createSlice({
       state.isAuthenticated = true;
     });
     builder.addCase(registerUser.rejected, (state) => {
+      localStorage.removeItem("token");
+      state.token = null;
+      state.user = null;
+      state.isAuthenticated = false;
+    });
+    builder.addCase(loginUser.fulfilled, (state, { payload }) => {
+      localStorage.setItem("token", payload);
+      state.token = payload;
+      state.isAuthenticated = true;
+    });
+    builder.addCase(loginUser.rejected, (state) => {
       localStorage.removeItem("token");
       state.token = null;
       state.user = null;

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../../store/hooks";
+import { loginUser } from "../../../store/slices/userSlice";
 
 const Login = () => {
+  const dispatch = useAppDispatch();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,10 +24,11 @@ const Login = () => {
   const formSubmitHandler = (e: React.ChangeEvent<any>): void => {
     e.preventDefault();
     console.log(formData);
-    setFormData({
-      email: "",
-      password: "",
-    });
+    dispatch(loginUser(formData));
+    // setFormData({
+    //   email: "",
+    //   password: "",
+    // });
   };
 
   return (

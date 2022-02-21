@@ -1,11 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
-const initialState: any = [];
+interface Alert {
+  id: string;
+  msg: string;
+  type: "success" | "caution" | "warning" | "danger";
+}
+
+const initialState: Alert[] = [];
 
 const alertSlice = createSlice({
   name: "alerts",
   initialState,
-  reducers: {},
+  reducers: {
+    setAlert: (state, { payload }) => {
+      state.push(payload);
+    },
+    removeAlert: (state, { payload }) => {
+      state = state.filter((alert) => alert.id !== payload);
+    },
+  },
   extraReducers: (builder) => {},
 });
 
