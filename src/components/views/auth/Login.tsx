@@ -23,12 +23,12 @@ const Login = () => {
 
   const formSubmitHandler = (e: React.ChangeEvent<any>): void => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
     dispatch(loginUser(formData));
-    // setFormData({
-    //   email: "",
-    //   password: "",
-    // });
+    setFormData({
+      email: "",
+      password: "",
+    });
   };
 
   return (
@@ -48,6 +48,7 @@ const Login = () => {
             <input
               type="email"
               name="email"
+              id="email"
               value={email}
               placeholder=" "
               className="input"
@@ -61,6 +62,7 @@ const Login = () => {
             <input
               type="password"
               name="password"
+              id="password"
               value={password}
               placeholder=" "
               className="input"
