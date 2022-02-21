@@ -13,7 +13,7 @@ interface User {
 
 export const registerUser = createAsyncThunk<string, User>(
   "/user/register",
-  async (registration, { rejectWithValue }) => {
+  async (registration, { rejectWithValue, dispatch }) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -30,6 +30,7 @@ export const registerUser = createAsyncThunk<string, User>(
       const errors = err.response.data.errors;
       for (let error of errors) {
         console.log(error);
+        dispatch(timedAlert({ ...error, type: "danger" }));
       }
       return rejectWithValue(err.response.data);
     }
