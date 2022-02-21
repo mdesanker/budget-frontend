@@ -10,6 +10,9 @@ module.exports = {
       transformOrigin: {
         0: "0%",
       },
+      spacing: {
+        "9/10": "90%",
+      },
     },
   },
   plugins: [],
