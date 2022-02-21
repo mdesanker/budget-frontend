@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { timedAlert } from "./alertSlice";
 
 // USER THUNKS
 interface User {
@@ -37,7 +38,7 @@ export const registerUser = createAsyncThunk<string, User>(
 
 export const loginUser = createAsyncThunk<string, User>(
   "/user/login",
-  async (login, { rejectWithValue }) => {
+  async (login, { rejectWithValue, dispatch }) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +55,7 @@ export const loginUser = createAsyncThunk<string, User>(
     } catch (err: any) {
       const errors = err.response.data.errors;
       for (let error of errors) {
-        console.log(error);
+        dispatch(timedAlert({ ...error, type: "danger" }));
       }
       return rejectWithValue(err.response.data);
     }
