@@ -10,9 +10,9 @@ interface User {
   passwordConfirm?: string;
 }
 
-export const registerUser = createAsyncThunk(
+export const registerUser = createAsyncThunk<string, User>(
   "/user/register",
-  async (registration: User, thunkAPI) => {
+  async (registration, { rejectWithValue }) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -24,14 +24,13 @@ export const registerUser = createAsyncThunk(
     try {
       const res = await axios.post(`/auth/register`, body, config);
 
-      console.log(res.data);
       return res.data.token;
     } catch (err: any) {
       const errors = err.response.data.errors;
       for (let error of errors) {
         console.log(error);
       }
-      return thunkAPI.rejectWithValue(err.response.data);
+      return rejectWithValue(err.response.data);
     }
   }
 );
@@ -52,7 +51,14 @@ const initialState: UserState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      localStorage.removeItem("token");
+      state.token = null;
+      state.user = null;
+      state.isAuthenticated = false;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(registerUser.fulfilled, (state, { payload }) => {
       localStorage.setItem("token", payload);
@@ -68,6 +74,6 @@ const userSlice = createSlice({
   },
 });
 
-// export const {} = userSlice.actions;
+export const { logout } = userSlice.actions;
 
 export default userSlice.reducer;
