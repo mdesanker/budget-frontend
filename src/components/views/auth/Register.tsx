@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../../store/hooks";
+import { registerUser } from "../../../store/slices/userSlice";
 
 const Register = () => {
+  const dispatch = useAppDispatch();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -20,19 +24,28 @@ const Register = () => {
     });
   };
 
+  const testData = {
+    firstName: "M",
+    lastName: "D",
+    email: "mike@gmail.com",
+    password: "password",
+    passwordConfirm: "password",
+  };
+
   const formSubmitHandler = (e: React.ChangeEvent<any>): void => {
     e.preventDefault();
     if (password !== passwordConfirm) {
       console.log("Passwords do not match");
     } else {
       console.log(formData);
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        passwordConfirm: "",
-      });
+      dispatch(registerUser(testData));
+      // setFormData({
+      //   firstName: "",
+      //   lastName: "",
+      //   email: "",
+      //   password: "",
+      //   passwordConfirm: "",
+      // });
     }
   };
 
