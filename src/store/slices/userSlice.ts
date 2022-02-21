@@ -1,25 +1,25 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { AppDispatch } from "../store";
 
-interface RegistrationDetails {
-  firstName: string;
-  lastName: string;
+// USER THUNKS
+interface User {
+  firstName?: string;
+  lastName?: string;
   email: string;
   password: string;
-  passwordConfirm: string;
+  passwordConfirm?: string;
 }
 
 export const registerUser = createAsyncThunk(
   "/user/register",
-  async (registrationDetails: RegistrationDetails, thunkAPI) => {
+  async (registration: User, thunkAPI) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
 
-    const body = JSON.stringify(registrationDetails);
+    const body = JSON.stringify(registration);
 
     try {
       const res = await axios.post(`/auth/register`, body, config);
@@ -36,7 +36,7 @@ export const registerUser = createAsyncThunk(
   }
 );
 
-// Define type for user state
+// USER SLICE
 interface UserState {
   token: string | null;
   user: {} | null;
@@ -53,7 +53,19 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {},
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder.addCase(registerUser.fulfilled, (state, { payload }) => {
+      localStorage.setItem("token", payload);
+      state.token = payload;
+      state.isAuthenticated = true;
+    });
+    builder.addCase(registerUser.rejected, (state) => {
+      localStorage.removeItem("token");
+      state.token = null;
+      state.user = null;
+      state.isAuthenticated = false;
+    });
+  },
 });
 
 // export const {} = userSlice.actions;
