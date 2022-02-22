@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../store/hooks";
 import { loginUser } from "../../../store/slices/userSlice";
 
 const Login = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -29,6 +30,7 @@ const Login = () => {
       email: "",
       password: "",
     });
+    navigate("/dashboard");
   };
 
   return (

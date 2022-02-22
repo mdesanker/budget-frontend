@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../store/hooks";
 import { timedAlert } from "../../../store/slices/alertSlice";
 import { registerUser } from "../../../store/slices/userSlice";
 
 const Register = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -40,6 +41,7 @@ const Register = () => {
         password: "",
         passwordConfirm: "",
       });
+      navigate("/dashboard");
     }
   };
 
