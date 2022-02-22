@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+
 interface TransactionProps {
   transaction: {
     user: string;
@@ -14,7 +16,12 @@ interface TransactionProps {
 const TransactionCard = ({ transaction }: TransactionProps) => {
   const { description, merchant, amount, date, category } = transaction;
 
-  console.log(transaction);
+  const formattedDate = DateTime.fromISO(date).toLocaleString(
+    DateTime.DATETIME_MED
+  );
+
+  console.log(formattedDate);
+
   return (
     <button className="flex justify-between py-2 border-b border-slate-200 mb-2 hover:bg-slate-50">
       <div className="text-left">
@@ -22,7 +29,7 @@ const TransactionCard = ({ transaction }: TransactionProps) => {
         <p className="font-semibold">{merchant}</p>
         <div className="flex gap-2 text-slate-400">
           <p>
-            {category}, {date}
+            {category} &middot; {formattedDate}
           </p>
         </div>
       </div>
