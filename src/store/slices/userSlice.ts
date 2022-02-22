@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import setAuthToken from "../../utils/setAuthToken";
 import { timedAlert } from "./alertSlice";
 
 // USER THUNKS
@@ -63,6 +64,28 @@ export const loginUser = createAsyncThunk<string, User>(
   }
 );
 
+export const loadUser = createAsyncThunk(
+  "user/load",
+  async (_, { dispatch, rejectWithValue }) => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+
+    try {
+      const res = await axios.get("/user/detail");
+
+      console.log(res.data);
+      return res.data;
+    } catch (err: any) {
+      const errors = err.response.data.errors;
+      for (let error of errors) {
+        dispatch(timedAlert({ ...error, type: "danger" }));
+      }
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 // USER SLICE
 interface UserState {
   token: string | null;
@@ -106,6 +129,14 @@ const userSlice = createSlice({
     });
     builder.addCase(loginUser.rejected, (state) => {
       localStorage.removeItem("token");
+      state.token = null;
+      state.user = null;
+      state.isAuthenticated = false;
+    });
+    builder.addCase(loadUser.fulfilled, (state, { payload }) => {
+      state.user = payload;
+    });
+    builder.addCase(loadUser.rejected, (state) => {
       state.token = null;
       state.user = null;
       state.isAuthenticated = false;
