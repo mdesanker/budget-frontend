@@ -1,4 +1,12 @@
+import React, { useState } from "react";
+
 const Dashboard = () => {
+  const [selectedOption, setSelectedOption] = useState("30");
+
+  const selectHandler = (e: React.ChangeEvent<any>) => {
+    setSelectedOption(e.target.value);
+  };
+
   return (
     <main>
       <div className="flex flex-col w-full items-center p-8 bg-gray-200">
@@ -18,6 +26,8 @@ const Dashboard = () => {
               name="days"
               id="days"
               className="text-4xl text-blue-600 font-semibold bg-transparent text-center px-2"
+              value={selectedOption}
+              onChange={selectHandler}
             >
               <option value="7" className="text-xl text-black">
                 7
