@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { timedAlert } from "../../../store/slices/alertSlice";
 import { registerUser } from "../../../store/slices/userSlice";
 
 const Register = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { isAuthenticated } = useAppSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -41,9 +42,14 @@ const Register = () => {
         password: "",
         passwordConfirm: "",
       });
-      navigate("/dashboard");
     }
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated]);
 
   return (
     <main className="main">

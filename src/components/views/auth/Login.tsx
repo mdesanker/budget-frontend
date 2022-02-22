@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { loginUser } from "../../../store/slices/userSlice";
 
 const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { isAuthenticated } = useAppSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -30,8 +31,13 @@ const Login = () => {
       email: "",
       password: "",
     });
-    navigate("/dashboard");
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated]);
 
   return (
     <main className="main">
