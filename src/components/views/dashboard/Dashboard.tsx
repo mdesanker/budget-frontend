@@ -14,7 +14,18 @@ const Dashboard = () => {
             <p className="text-gray-500">What you've spent</p>
           </div>
           <div className="flex flex-col w-1/3 justify-center items-center gap-2">
-            <p className="text-4xl text-blue-600 font-semibold">30</p>
+            <select
+              name="days"
+              id="days"
+              className="text-4xl text-blue-600 font-semibold bg-transparent text-center px-2"
+            >
+              <option value="7" className="text-xl text-black">
+                7
+              </option>
+              <option value="30" className="text-xl text-black" selected>
+                30
+              </option>
+            </select>
             <p className="text-gray-500">Days</p>
           </div>
         </div>
