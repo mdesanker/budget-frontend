@@ -89,7 +89,16 @@ export const loadUser = createAsyncThunk(
 // USER SLICE
 interface UserState {
   token: string | null;
-  user: {} | null;
+  user: {
+    _id: string;
+    name: {
+      firstName: string;
+      lastName: string;
+    };
+    email: string;
+    date: string;
+    __v: number;
+  } | null;
   isAuthenticated: Boolean;
 }
 

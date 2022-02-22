@@ -13,6 +13,7 @@ export const store = configureStore({
 export type AppDispatch = typeof store.dispatch;
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
+
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,

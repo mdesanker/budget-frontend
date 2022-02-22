@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useAppSelector } from "../../../../store/hooks";
+import { RootState } from "../../../../store/store";
 
 const DashHeader = () => {
+  const { user } = useAppSelector((state: RootState) => state.user);
+
   const [selectedOption, setSelectedOption] = useState("30");
 
   const selectHandler = (e: React.ChangeEvent<any>) => {
@@ -10,7 +14,9 @@ const DashHeader = () => {
   return (
     <header className="flex flex-col w-full items-center p-8 bg-gray-200">
       <div className="w-full pb-4">
-        <h1 className="w-full text-2xl font-semibold">Hi Michael</h1>
+        <h1 className="w-full text-2xl font-semibold">
+          Hi {user && user.name.firstName}
+        </h1>
         <p className="text-lg text-gray-600">Here's your spending dashboard</p>
       </div>
       <div className="flex w-full bg-white rounded-md shadow-xl p-6">
@@ -29,7 +35,7 @@ const DashHeader = () => {
             <option value="7" className="text-xl text-black">
               7
             </option>
-            <option value="30" className="text-xl text-black" selected>
+            <option value="30" className="text-xl text-black">
               30
             </option>
           </select>
