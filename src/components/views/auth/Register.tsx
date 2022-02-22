@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../../store/hooks";
+import { timedAlert } from "../../../store/slices/alertSlice";
 import { registerUser } from "../../../store/slices/userSlice";
 
 const Register = () => {
@@ -24,21 +25,14 @@ const Register = () => {
     });
   };
 
-  const testData = {
-    firstName: "M",
-    lastName: "D",
-    email: "mike@gmail.com",
-    password: "password",
-    passwordConfirm: "password",
-  };
-
   const formSubmitHandler = (e: React.ChangeEvent<any>): void => {
     e.preventDefault();
     if (password !== passwordConfirm) {
       console.log("Passwords do not match");
+      dispatch(timedAlert({ msg: "Passwords do not match", type: "danger" }));
     } else {
       console.log(formData);
-      dispatch(registerUser(testData));
+      dispatch(registerUser(formData));
       setFormData({
         firstName: "",
         lastName: "",
