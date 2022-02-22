@@ -39,13 +39,13 @@ const Register = () => {
     } else {
       console.log(formData);
       dispatch(registerUser(testData));
-      // setFormData({
-      //   firstName: "",
-      //   lastName: "",
-      //   email: "",
-      //   password: "",
-      //   passwordConfirm: "",
-      // });
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        passwordConfirm: "",
+      });
     }
   };
 
@@ -66,6 +66,7 @@ const Register = () => {
             <input
               type="text"
               name="firstName"
+              id="firstName"
               value={firstName}
               placeholder=" "
               className="input"
@@ -79,6 +80,7 @@ const Register = () => {
             <input
               type="text"
               name="lastName"
+              id="lastName"
               value={lastName}
               placeholder=" "
               className="input"
@@ -92,6 +94,7 @@ const Register = () => {
             <input
               type="email"
               name="email"
+              id="email"
               value={email}
               placeholder=" "
               className="input"
@@ -105,6 +108,7 @@ const Register = () => {
             <input
               type="password"
               name="password"
+              id="password"
               value={password}
               placeholder=" "
               className="input"
@@ -118,6 +122,7 @@ const Register = () => {
             <input
               type="password"
               name="passwordConfirm"
+              id="passwordConfirm"
               value={passwordConfirm}
               placeholder=" "
               className="input"
