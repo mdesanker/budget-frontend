@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BiMenuAltLeft } from "react-icons/bi";
 
 const Dashboard = () => {
   const [selectedOption, setSelectedOption] = useState("30");
@@ -9,7 +10,7 @@ const Dashboard = () => {
 
   return (
     <main>
-      <div className="flex flex-col w-full items-center p-8 bg-gray-200">
+      <header className="flex flex-col w-full items-center p-8 bg-gray-200">
         <div className="w-full pb-4">
           <h1 className="w-full text-2xl font-semibold">Hi Michael</h1>
           <p className="text-lg text-gray-600">
@@ -38,6 +39,12 @@ const Dashboard = () => {
             </select>
             <p className="text-gray-500">Days</p>
           </div>
+        </div>
+      </header>
+      <div className="px-6 py-4">
+        <div className="flex justify-between items-center text-lg font-semibold">
+          <h2>Recent Transactions</h2>
+          <BiMenuAltLeft className="h-8 w-8 text-blue-500" />
         </div>
       </div>
     </main>
