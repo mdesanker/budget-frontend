@@ -4,6 +4,7 @@ import { MdDashboard } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
 import { VscGraphLine } from "react-icons/vsc";
 import { FaUserCircle } from "react-icons/fa";
+import { FiSettings } from "react-icons/fi";
 
 const Nav = () => {
   const location = useLocation();
@@ -14,7 +15,7 @@ const Nav = () => {
         <li>
           <NavLink
             to="/dashboard"
-            className={`flex flex-col justify-center items-center text-gray-500 ${
+            className={`flex flex-col gap-1 px-2 justify-center items-center text-gray-500 ${
               location.pathname === "/dashboard" ? "text-blue-500" : ""
             }`}
           >
@@ -25,7 +26,7 @@ const Nav = () => {
         <li>
           <NavLink
             to="/transactions"
-            className={`flex flex-col justify-center items-center text-gray-500 ${
+            className={`flex flex-col gap-1 px-2 justify-center items-center text-gray-500 ${
               location.pathname === "/transactions" ? "text-blue-500" : ""
             }`}
           >
@@ -36,7 +37,7 @@ const Nav = () => {
         <li>
           <NavLink
             to="#"
-            className={`flex flex-col justify-center items-center text-gray-500 ${
+            className={`flex flex-col gap-1 px-2 justify-center items-center text-gray-500 ${
               location.pathname === "/activity" ? "text-blue-500" : ""
             }`}
           >
@@ -47,12 +48,12 @@ const Nav = () => {
         <li>
           <NavLink
             to="/settings"
-            className={`flex flex-col justify-center items-center text-gray-500 ${
-              location.pathname === "/settings" ? "text-blue-500" : ""
+            className={`flex flex-col gap-1 px-2 justify-center items-center text-gray-500 ${
+              location.pathname === "/account" ? "text-blue-500" : ""
             }`}
           >
             <FaUserCircle className="nav-icon" />
-            <p className="nav-text">Settings</p>
+            <p className="nav-text">Account</p>
           </NavLink>
         </li>
       </ul>
