@@ -1,4 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
+import "./Nav.css";
 import { MdDashboard } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
 import { VscGraphLine } from "react-icons/vsc";
@@ -8,30 +9,54 @@ const Nav = () => {
   const location = useLocation();
 
   return (
-    <div className="fixed inset-x-0 bottom-0 h-16 bg-white">
-      <ul className="flex justify-around p-2 h-full">
+    <nav className="nav-bar">
+      <ul className="nav-list">
         <li>
-          <NavLink to="/dashboard">
-            <MdDashboard />
+          <NavLink
+            to="/dashboard"
+            className={`flex flex-col justify-center items-center text-gray-500 ${
+              location.pathname === "/dashboard" ? "text-blue-500" : ""
+            }`}
+          >
+            <MdDashboard className="nav-icon" />
+            <p className="nav-text">Dashboard</p>
           </NavLink>
         </li>
         <li>
-          <NavLink to="#">
-            <BsCashCoin />
+          <NavLink
+            to="/transactions"
+            className={`flex flex-col justify-center items-center text-gray-500 ${
+              location.pathname === "/transactions" ? "text-blue-500" : ""
+            }`}
+          >
+            <BsCashCoin className="nav-icon" />
+            <p className="nav-text">Transactions</p>
           </NavLink>
         </li>
         <li>
-          <NavLink to="#">
-            <VscGraphLine />
+          <NavLink
+            to="#"
+            className={`flex flex-col justify-center items-center text-gray-500 ${
+              location.pathname === "/activity" ? "text-blue-500" : ""
+            }`}
+          >
+            <VscGraphLine className="nav-icon" />
+            <p className="nav-text">Activity</p>
           </NavLink>
         </li>
         <li>
-          <NavLink to="#">
-            <FaUserCircle />
+          <NavLink
+            to="/settings"
+            className={`flex flex-col justify-center items-center text-gray-500 ${
+              location.pathname === "/settings" ? "text-blue-500" : ""
+            }`}
+          >
+            <FaUserCircle className="nav-icon" />
+            <p className="nav-text">Settings</p>
           </NavLink>
         </li>
       </ul>
-    </div>
+    </nav>
   );
 };
 
