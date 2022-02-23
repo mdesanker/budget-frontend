@@ -28,7 +28,7 @@ const DashHeader = () => {
           <select
             name="days"
             id="days"
-            className="text-4xl text-blue-600 font-semibold bg-transparent text-center px-2"
+            className="text-4xl text-blue-600 font-semibold bg-transparent text-center px-2 outline-none"
             value={selectedOption}
             onChange={selectHandler}
           >
