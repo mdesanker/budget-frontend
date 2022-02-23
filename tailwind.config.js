@@ -13,6 +13,10 @@ module.exports = {
       spacing: {
         "9/10": "90%",
       },
+      width: {
+        15: "60px",
+        31: "122px",
+      },
     },
   },
   plugins: [],
