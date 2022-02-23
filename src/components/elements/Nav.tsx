@@ -4,7 +4,6 @@ import { MdDashboard } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
 import { VscGraphLine } from "react-icons/vsc";
 import { FaUserCircle } from "react-icons/fa";
-import { FiSettings } from "react-icons/fi";
 
 const Nav = () => {
   const location = useLocation();
