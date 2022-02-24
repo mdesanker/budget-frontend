@@ -6,7 +6,7 @@ import { DateTime } from "luxon";
 
 const TransactionForm = () => {
   const [formData, setFormData] = useState({
-    amount: 0,
+    amount: "",
     merchant: "",
     description: "",
     type: "expense",
@@ -66,13 +66,14 @@ const TransactionForm = () => {
             value={amount}
             onChange={formChangeHandler}
             step={0.01}
+            placeholder="0"
             className="outline-none text-2xl w-full"
           />
         </div>
       </div>
       <div className="form-group group">
         <label
-          htmlFor="amount"
+          htmlFor="merchant"
           className="w-full font-medium text-gray-400 group-focus-within:text-sky-700"
         >
           {type === "expense" ? "To" : "From"}
@@ -88,7 +89,7 @@ const TransactionForm = () => {
       </div>
       <div className="form-group group">
         <label
-          htmlFor="amount"
+          htmlFor="description"
           className="w-full font-medium text-gray-400 group-focus-within:text-sky-700"
         >
           For
@@ -127,10 +128,10 @@ const TransactionForm = () => {
       </div>
       <div className="form-group group">
         <label
-          htmlFor="amount"
+          htmlFor="date"
           className="w-full font-medium text-gray-400 group-focus-within:text-sky-700"
         >
-          For
+          Date
         </label>
         <input
           type="date"
@@ -141,6 +142,7 @@ const TransactionForm = () => {
           className="outline-none text-xl w-full pb-1"
         />
       </div>
+      <button className="submit-btn">Add Transaction</button>
     </form>
   );
 };

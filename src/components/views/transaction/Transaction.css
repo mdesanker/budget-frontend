@@ -15,3 +15,7 @@ input[type="number"]::-webkit-outer-spin-button {
 input:focus + label {
   @apply text-sky-700;
 }
+
+.submit-btn {
+  @apply border-2 border-sky-700 bg-sky-700 text-white p-2 w-full rounded-md shadow-md font-semibold my-2 duration-200 hover:bg-sky-800 hover:border-sky-800;
+}
