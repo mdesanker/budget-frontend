@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import "../Transaction.css";
+import { categories } from "../../../../utils/transactionCategories";
 
 const TransactionForm = () => {
   const [formData, setFormData] = useState({
@@ -7,9 +9,10 @@ const TransactionForm = () => {
     merchant: "",
     description: "",
     type: "expense",
+    category: "personal",
   });
 
-  const { amount, merchant, description, type } = formData;
+  const { amount, merchant, description, type, category } = formData;
 
   const formChangeHandler = (e: React.ChangeEvent<any>) => {
     const { name, value } = e.target;
@@ -78,7 +81,7 @@ const TransactionForm = () => {
           name="merchant"
           value={merchant}
           onChange={formChangeHandler}
-          className="outline-none text-2xl w-full pb-1"
+          className="outline-none text-xl w-full pb-1"
         />
       </div>
       <div className="form-group group">
@@ -94,8 +97,31 @@ const TransactionForm = () => {
           name="description"
           value={description}
           onChange={formChangeHandler}
-          className="outline-none text-2xl w-full pb-1"
+          className="outline-none text-xl w-full pb-1"
         />
+      </div>
+      <div className="form-group w-full group">
+        <label
+          htmlFor="category"
+          className="w-full font-medium text-gray-400 group-focus-within:text-sky-700"
+        >
+          Category
+        </label>
+        <select
+          name="category"
+          id="category"
+          className="outline-none bg-transparent text-xl pb-1"
+          value={category}
+          onChange={formChangeHandler}
+        >
+          {categories.map((category) => {
+            return (
+              <option key={uuidv4()} value={category.value}>
+                {category.name}
+              </option>
+            );
+          })}
+        </select>
       </div>
     </form>
   );
