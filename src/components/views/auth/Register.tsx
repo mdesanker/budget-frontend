@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { timedAlert } from "../../../store/slices/alertSlice";
 import { registerUser } from "../../../store/slices/userSlice";
+import "./Auth.css";
 
 const Register = () => {
   const dispatch = useAppDispatch();
@@ -136,7 +137,7 @@ const Register = () => {
           </div>
           <button className="btn group">
             <p>Sign up</p>
-            <div className=" p-5 rounded-full text-white bg-fuchsia-700 group-hover:bg-fuchsia-800  duration-200">
+            <div className=" p-5 rounded-full text-white bg-sky-700 group-hover:bg-sky-800  duration-200">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -156,7 +157,7 @@ const Register = () => {
         </form>
         <p className="text-sm p-4 mb-4">
           Already have an account?{" "}
-          <Link to="/" className="font-bold text-fuchsia-700">
+          <Link to="/" className="font-bold text-sky-700">
             Log in.
           </Link>
         </p>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { loginUser } from "../../../store/slices/userSlice";
+import "./Auth.css";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -82,7 +83,7 @@ const Login = () => {
           </div>
           <button className="btn group">
             <p>Log in</p>
-            <div className=" p-5 rounded-full text-white bg-fuchsia-700 group-hover:bg-fuchsia-800  duration-200">
+            <div className=" p-5 rounded-full text-white bg-sky-700 group-hover:bg-sky-800  duration-200">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -102,7 +103,7 @@ const Login = () => {
         </form>
         <p className="text-sm p-4 mb-4">
           Don't have an account?{" "}
-          <Link to="/register" className="font-bold text-fuchsia-700">
+          <Link to="/register" className="font-bold text-sky-700">
             Sign up.
           </Link>
         </p>
