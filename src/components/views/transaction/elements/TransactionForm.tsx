@@ -3,14 +3,19 @@ import "../Transaction.css";
 
 const TransactionForm = () => {
   const [formData, setFormData] = useState({
+    amount: 0,
+    merchant: "",
+    description: "",
     type: "expense",
   });
 
-  const { type } = formData;
+  const { amount, merchant, description, type } = formData;
 
-  const typeChangeHandler = (e: React.ChangeEvent<any>) => {
+  const formChangeHandler = (e: React.ChangeEvent<any>) => {
+    const { name, value } = e.target;
+
     setFormData((prevState) => {
-      return { ...prevState, type: e.target.id };
+      return { ...prevState, [name]: value };
     });
   };
 
@@ -19,8 +24,9 @@ const TransactionForm = () => {
       <div className="w-full max-w-[360px] pb-4 flex justify-around">
         <button
           type="button"
-          id="expense"
-          onClick={typeChangeHandler}
+          name="type"
+          value="expense"
+          onClick={formChangeHandler}
           className={`type-btn ${
             type === "expense" ? "bg-sky-700 shadow-lg" : "bg-gray-300"
           }`}
@@ -29,8 +35,9 @@ const TransactionForm = () => {
         </button>
         <button
           type="button"
-          id="earning"
-          onClick={typeChangeHandler}
+          name="type"
+          value="earning"
+          onClick={formChangeHandler}
           className={`type-btn ${
             type === "earning" ? "bg-sky-700" : "bg-gray-300"
           }`}
@@ -51,10 +58,44 @@ const TransactionForm = () => {
             type="number"
             id="amount"
             name="amount"
+            value={amount}
+            onChange={formChangeHandler}
             step={0.01}
             className="outline-none text-2xl w-full"
           />
         </div>
+      </div>
+      <div className="form-group group">
+        <label
+          htmlFor="amount"
+          className="w-full font-medium text-gray-400 group-focus-within:text-sky-700"
+        >
+          {type === "expense" ? "To" : "From"}
+        </label>
+        <input
+          type="text"
+          id="merchant"
+          name="merchant"
+          value={merchant}
+          onChange={formChangeHandler}
+          className="outline-none text-2xl w-full pb-1"
+        />
+      </div>
+      <div className="form-group group">
+        <label
+          htmlFor="amount"
+          className="w-full font-medium text-gray-400 group-focus-within:text-sky-700"
+        >
+          For
+        </label>
+        <input
+          type="text"
+          id="description"
+          name="description"
+          value={description}
+          onChange={formChangeHandler}
+          className="outline-none text-2xl w-full pb-1"
+        />
       </div>
     </form>
   );
