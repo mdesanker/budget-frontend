@@ -1,9 +1,9 @@
 import React from "react";
 import { RiExchangeDollarLine } from "react-icons/ri";
 import TransactionForm from "./elements/TransactionForm";
-import "./Transaction.css";
+import "./NewTransactionForm.css";
 
-const Transaction = () => {
+const NewTransactionForm = () => {
   return (
     <main className="bg-stripe w-full h-screen gap-2 flex flex-col items-center justify-center bg-gray-200">
       <div className="flex flex-col justify-center items-center bg-white rounded-md shadow-lg w-9/10 sm:w-auto">
@@ -17,4 +17,4 @@ const Transaction = () => {
   );
 };
 
-export default Transaction;
+export default NewTransactionForm;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import "../Transaction.css";
+import "../NewTransactionForm.css";
 import { categories } from "../../../../utils/transactionCategories";
 import { DateTime } from "luxon";
 
@@ -151,6 +152,12 @@ const TransactionForm = () => {
         />
       </div>
       <button className="submit-btn">Add Transaction</button>
+      <Link
+        to="/dashboard"
+        className="text-sky-700 font-medium hover:underline"
+      >
+        Cancel
+      </Link>
     </form>
   );
 };
