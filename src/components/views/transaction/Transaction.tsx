@@ -1,94 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import { RiExchangeDollarLine } from "react-icons/ri";
 import TransactionForm from "./elements/TransactionForm";
-import TransactionHeader from "./elements/TransactionHeader";
 import "./Transaction.css";
 
 const Transaction = () => {
-  const [type, setType] = useState("expense");
-
-  const typeHandler = (e: React.ChangeEvent<any>) => {
-    setType(e.target.value);
-  };
-
   return (
-    <main className="w-full h-screen gap-2 flex flex-col items-center">
-      <TransactionHeader />
-      <TransactionForm />
-      {/* <form className="flex flex-col w-full p-4 items-center">
-        <div className="flex w-full mb-6">
-          <button
-            type="button"
-            className={`bg-gray-100 grow font-medium py-2 duration-200 ${
-              type === "expense" ? "bg-sky-700 text-white" : ""
-            }`}
-            onClick={typeHandler}
-            value="expense"
-          >
-            Expense
-          </button>
-          <button
-            type="button"
-            className={`bg-gray-100 grow font-medium py-2 duration-200 ${
-              type === "earning" ? "bg-sky-700 text-white" : ""
-            }`}
-            onClick={typeHandler}
-            value="earning"
-          >
-            Earning
-          </button>
+    <main className="w-full h-screen gap-2 flex flex-col items-center justify-center bg-gray-200">
+      <div className="flex flex-col justify-center items-center bg-white rounded-md shadow-lg">
+        <div className="relative flex flex-col justify-center items-center w-full bg-gray-100 rounded-t-md">
+          <RiExchangeDollarLine className="absolute h-24 w-24 p-4 bg-white shadow-md rounded-full -top-12 border-4 border-white" />
+          <h1 className="text-xl font-semibold p-2 mt-12">Add Transaction</h1>
         </div>
-        <div className="form-group">
-          <label htmlFor="amount" className="label">
-            Amount
-          </label>
-          <div className="flex relative">
-            <p className="text-6xl w-[35px] absolute">$</p>
-            <input
-              type="number"
-              name="amount"
-              id="amount"
-              placeholder="0.00"
-              step={0.01}
-              className="appearance-none outline-none m-0 text-6xl text-center border-b w-full"
-            />
-          </div>
-        </div>
-        <div className="form-group">
-          <label htmlFor="merchant" className="label">
-            {type === "expense" ? "To" : "From"}
-          </label>
-          <input
-            type="text"
-            name="merchant"
-            id="merchant"
-            className="text-input"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="description" className="label">
-            For
-          </label>
-          <input
-            type="text"
-            name="description"
-            id="description"
-            placeholder="Description"
-            className="text-input"
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="category" className="label">
-            Category
-          </label>
-          <select name="category" id="category">
-            <option value="personal">Personal</option>
-            <option value="billsutilities">Bills & Utilities</option>
-            <option value="professionalService">Professional Service</option>
-          </select>
-        </div>
-        <button>Add transaction</button>
-      </form> */}
+        <TransactionForm />
+      </div>
     </main>
   );
 };
