@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "../Transaction.css";
 import { categories } from "../../../../utils/transactionCategories";
+import { DateTime } from "luxon";
 
 const TransactionForm = () => {
   const [formData, setFormData] = useState({
@@ -10,9 +11,10 @@ const TransactionForm = () => {
     description: "",
     type: "expense",
     category: "personal",
+    date: DateTime.now().toISODate(),
   });
 
-  const { amount, merchant, description, type, category } = formData;
+  const { amount, merchant, description, type, category, date } = formData;
 
   const formChangeHandler = (e: React.ChangeEvent<any>) => {
     const { name, value } = e.target;
@@ -100,7 +102,7 @@ const TransactionForm = () => {
           className="outline-none text-xl w-full pb-1"
         />
       </div>
-      <div className="form-group w-full group">
+      <div className="form-group group">
         <label
           htmlFor="category"
           className="w-full font-medium text-gray-400 group-focus-within:text-sky-700"
@@ -122,6 +124,22 @@ const TransactionForm = () => {
             );
           })}
         </select>
+      </div>
+      <div className="form-group group">
+        <label
+          htmlFor="amount"
+          className="w-full font-medium text-gray-400 group-focus-within:text-sky-700"
+        >
+          For
+        </label>
+        <input
+          type="date"
+          id="date"
+          name="date"
+          value={date}
+          onChange={formChangeHandler}
+          className="outline-none text-xl w-full pb-1"
+        />
       </div>
     </form>
   );
