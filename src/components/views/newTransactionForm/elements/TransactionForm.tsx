@@ -154,7 +154,7 @@ const TransactionForm = () => {
       <button className="submit-btn">Add Transaction</button>
       <Link
         to="/dashboard"
-        className="text-sky-700 font-medium hover:underline"
+        className="text-sky-700 font-medium hover:underline mt-4"
       >
         Cancel
       </Link>

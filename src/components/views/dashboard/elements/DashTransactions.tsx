@@ -1,4 +1,5 @@
 import { BiMenuAltLeft } from "react-icons/bi";
+import { Link } from "react-router-dom";
 import TransactionCard from "./TransactionCard";
 
 export interface Transaction {
@@ -76,7 +77,13 @@ const DashTransactions = () => {
     <div className="px-6 py-4">
       <div className="flex justify-between items-center text-lg font-semibold mb-2">
         <h2>Recent Transactions</h2>
-        <BiMenuAltLeft className="h-8 w-8 text-blue-500" />
+        {/* <BiMenuAltLeft className="h-8 w-8 text-blue-500" /> */}
+        <Link
+          to="/transaction"
+          className="text-blue-700 uppercase border-2  duration-200 border-blue-700 px-4 rounded hover:bg-blue-700 hover:text-white"
+        >
+          Add
+        </Link>
       </div>
       <div className="flex flex-col">
         {transactions.map((transaction) => {
