@@ -3,6 +3,9 @@ module.exports = {
   theme: {
     extend: {
       borderColor: ["responsive", "hover", "focus", "focus-within"],
+      borderWidth: {
+        6: "6px",
+      },
       zIndex: {
         "-1": "-1",
         1: "1",
