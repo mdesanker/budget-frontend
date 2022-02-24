@@ -3,3 +3,15 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.form-group {
+  @apply flex flex-col items-center w-full mb-8;
+}
+
+.label {
+  @apply text-xl font-semibold text-left w-full;
+}
+
+.text-input {
+  @apply outline-none w-full border-b text-center text-2xl;
+}
