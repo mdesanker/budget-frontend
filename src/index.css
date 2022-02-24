@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .bg-stripe {
+    background-image: linear-gradient(
+      170deg,
+      #0369a1,
+      #0369a1 35%,
+      #e5e7eb 20px,
+      #e5e7eb
+    );
+  }
+}

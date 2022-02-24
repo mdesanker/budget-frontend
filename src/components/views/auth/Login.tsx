@@ -41,7 +41,7 @@ const Login = () => {
   }, [isAuthenticated]);
 
   return (
-    <main className="main">
+    <main className="main bg-stripe">
       <div className="card">
         <div className="card-header">
           <h1 className="text-4xl font-semibold pb-2">Log in</h1>
