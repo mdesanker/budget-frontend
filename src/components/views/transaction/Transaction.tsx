@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import TransactionForm from "./elements/TransactionForm";
+import TransactionHeader from "./elements/TransactionHeader";
 import "./Transaction.css";
-import { RiExchangeDollarLine } from "react-icons/ri";
 
 const Transaction = () => {
   const [type, setType] = useState("expense");
@@ -11,11 +12,9 @@ const Transaction = () => {
 
   return (
     <main className="w-full h-screen gap-2 flex flex-col items-center">
-      <div className="flex flex-col justify-center p-6 items-center w-full bg-gray-300">
-        <RiExchangeDollarLine className="h-28 w-28 bg-sky-700 text-white border-6 border-white rounded-full p-4" />
-        <h1 className="text-3xl font-semibold pt-4">Add Transaction</h1>
-      </div>
-      <form className="flex flex-col w-full p-4 items-center">
+      <TransactionHeader />
+      <TransactionForm />
+      {/* <form className="flex flex-col w-full p-4 items-center">
         <div className="flex w-full mb-6">
           <button
             type="button"
@@ -89,7 +88,7 @@ const Transaction = () => {
           </select>
         </div>
         <button>Add transaction</button>
-      </form>
+      </form> */}
     </main>
   );
 };
