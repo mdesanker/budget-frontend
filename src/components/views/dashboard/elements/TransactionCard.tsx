@@ -1,17 +1,8 @@
 import { DateTime } from "luxon";
+import { ITransactionDB } from "../../../../store/slices/transactionSlice";
 
 interface TransactionProps {
-  transaction: {
-    user: string;
-    description: string;
-    merchant: string;
-    amount: number;
-    type: "expense" | "earning";
-    category: string;
-    date: string;
-    _id: string;
-    __v?: number;
-  };
+  transaction: ITransactionDB;
 }
 
 const TransactionCard = ({ transaction }: TransactionProps) => {

@@ -9,7 +9,6 @@ export const getUserTransactions = createAsyncThunk(
     try {
       const res = await axios.get("/transaction/user");
 
-      console.log(res.data);
       return res.data;
     } catch (err: any) {
       const errors = err.response.data.errors;
@@ -48,20 +47,23 @@ export const addTransaction = createAsyncThunk<any, any>(
 
 // TRANSACTION SLICE
 interface Transaction {
-  _id?: string;
-  user?: string;
   description: string;
   merchant: string;
-  amount: number | string;
+  amount: number;
   type: string;
   category: string;
   date: string;
-  __v0?: number;
+}
+
+export interface ITransactionDB extends Transaction {
+  _id: string;
+  user: string;
+  __v0: number;
 }
 
 interface TransactionState {
-  transactions: Transaction[];
-  currentTransaction: Transaction | null;
+  transactions: ITransactionDB[];
+  currentTransaction: ITransactionDB | null;
 }
 
 const initialState: TransactionState = {
