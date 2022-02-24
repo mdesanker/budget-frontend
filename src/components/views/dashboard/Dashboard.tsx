@@ -22,7 +22,7 @@ const Dashboard = () => {
   }, [user]);
 
   return (
-    <main>
+    <main className="mb-16">
       <DashHeader />
       <DashTransactions />
       <Nav />
