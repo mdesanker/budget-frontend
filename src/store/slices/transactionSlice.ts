@@ -21,30 +21,47 @@ export const getUserTransactions = createAsyncThunk(
   }
 );
 
+export const addTransaction = createAsyncThunk<any, any>(
+  "transaction/add",
+  async (transaction, { dispatch, rejectWithValue }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(transaction);
+
+    try {
+      const res = await axios.post("/transaction/add", body, config);
+
+      return res.data;
+    } catch (err: any) {
+      const errors = err.response.data.errors;
+      for (let error of errors) {
+        dispatch(timedAlert({ ...error, type: "danger" }));
+      }
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 // TRANSACTION SLICE
+interface Transaction {
+  _id?: string;
+  user?: string;
+  description: string;
+  merchant: string;
+  amount: number | string;
+  type: string;
+  category: string;
+  date: string;
+  __v0?: number;
+}
+
 interface TransactionState {
-  transactions: {
-    _id: string;
-    user: string;
-    description: string;
-    merchant: string;
-    amount: number;
-    type: string;
-    category: string;
-    date: string;
-    __v0: number;
-  }[];
-  currentTransaction: {
-    _id: string;
-    user: string;
-    description: string;
-    merchant: string;
-    amount: number;
-    type: string;
-    category: string;
-    date: string;
-    __v0: number;
-  } | null;
+  transactions: Transaction[];
+  currentTransaction: Transaction | null;
 }
 
 const initialState: TransactionState = {
@@ -62,6 +79,9 @@ const transactionSlice = createSlice({
     });
     builder.addCase(getUserTransactions.rejected, (state) => {
       state.transactions = [];
+    });
+    builder.addCase(addTransaction.fulfilled, (state, { payload }) => {
+      state.transactions.push(payload);
     });
   },
 });

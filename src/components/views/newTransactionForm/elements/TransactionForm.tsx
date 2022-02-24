@@ -4,8 +4,12 @@ import { v4 as uuidv4 } from "uuid";
 import "../NewTransactionForm.css";
 import { categories } from "../../../../utils/transactionCategories";
 import { DateTime } from "luxon";
+import { useAppDispatch } from "../../../../store/hooks";
+import { addTransaction } from "../../../../store/slices/transactionSlice";
 
 const TransactionForm = () => {
+  const dispatch = useAppDispatch();
+
   const [formData, setFormData] = useState({
     amount: "",
     merchant: "",
@@ -28,6 +32,7 @@ const TransactionForm = () => {
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     console.log(formData);
+    dispatch(addTransaction(formData));
   };
 
   return (
