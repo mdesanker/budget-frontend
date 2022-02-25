@@ -7,8 +7,6 @@ import "./TransactionForm.css";
 const EditTransaction = () => {
   const { id } = useParams();
 
-  console.log(id);
-
   return (
     <main className="transaction-wrapper bg-stripe">
       <div className="transaction-card">
