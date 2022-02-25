@@ -1,25 +1,26 @@
 import { useState } from "react";
-import { useAppSelector } from "../../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { getTransactionsForXDays } from "../../../../store/slices/transactionSlice";
 import { RootState } from "../../../../store/store";
 
 const DashHeader = () => {
+  const dispatch = useAppDispatch();
   const { user } = useAppSelector((state: RootState) => state.user);
   const { transactions } = useAppSelector(
     (state: RootState) => state.transactions
   );
 
   const total =
-    transactions &&
+    transactions.length > 0 &&
     transactions
       .map((transaction) => transaction.amount)
       .reduce((a, b) => a + b);
-
-  console.log(total);
 
   const [selectedOption, setSelectedOption] = useState("30");
 
   const selectHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(e.target.value);
+    dispatch(getTransactionsForXDays(e.target.value));
   };
 
   return (

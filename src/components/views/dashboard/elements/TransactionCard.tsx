@@ -9,7 +9,7 @@ const TransactionCard = ({ transaction }: TransactionProps) => {
   const { description, merchant, amount, type, date, category } = transaction;
 
   const formattedDate = DateTime.fromISO(date).toLocaleString(
-    DateTime.DATETIME_MED
+    DateTime.DATE_MED
   );
 
   return (
@@ -18,8 +18,8 @@ const TransactionCard = ({ transaction }: TransactionProps) => {
         <p>{description}</p>
         <p className="font-semibold">{merchant}</p>
         <div className="flex gap-2 text-slate-400">
-          <p>
-            {category} &middot; {formattedDate}
+          <p className="text-sm">
+            {category.toUpperCase()} &middot; {formattedDate}
           </p>
         </div>
       </div>
