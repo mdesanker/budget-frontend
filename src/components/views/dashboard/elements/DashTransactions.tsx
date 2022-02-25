@@ -20,6 +20,11 @@ const DashTransactions = () => {
         </Link>
       </div>
       <div className="flex flex-col">
+        {transactions.length === 0 && (
+          <p className="py-2 text-center text-gray-500">
+            No recent transactions
+          </p>
+        )}
         {transactions &&
           transactions.map((transaction) => {
             return (

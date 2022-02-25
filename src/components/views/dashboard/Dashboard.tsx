@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { getUserTransactions } from "../../../store/slices/transactionSlice";
+import {
+  getTransactionsForXDays,
+  getUserTransactions,
+} from "../../../store/slices/transactionSlice";
 import { loadUser } from "../../../store/slices/userSlice";
 import Nav from "../../elements/Nav";
 import DashHeader from "./elements/DashHeader";
@@ -18,7 +21,7 @@ const Dashboard = () => {
 
   // Load transactions as user changes
   useEffect(() => {
-    dispatch(getUserTransactions());
+    dispatch(getTransactionsForXDays("30"));
   }, [user]);
 
   return (

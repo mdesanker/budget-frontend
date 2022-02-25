@@ -33,7 +33,7 @@ const DashHeader = () => {
       </div>
       <div className="flex w-full bg-white rounded-md shadow-xl px-2 py-6">
         <div className="flex flex-col w-2/3 justify-center items-center gap-2 border-r-2">
-          <p className="text-4xl font-semibold">${total}</p>
+          <p className="text-4xl font-semibold">${total ? total : " - "}</p>
           <p className="text-gray-500">What you've spent</p>
         </div>
         <div className="flex flex-col w-1/3 justify-center items-center gap-2">
