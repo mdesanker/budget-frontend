@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import {
+  clearTransaction,
   getTransactionsForXDays,
   getUserTransactions,
 } from "../../../store/slices/transactionSlice";
@@ -17,6 +18,7 @@ const Dashboard = () => {
   // Load user data
   useEffect(() => {
     dispatch(loadUser());
+    dispatch(clearTransaction());
   }, []);
 
   // Load transactions as user changes

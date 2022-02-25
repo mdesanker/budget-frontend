@@ -70,7 +70,7 @@ const TransactionCard = ({ transaction }: TransactionProps) => {
         </div>
         <div className="text-right">
           <p className="font-semibold text-slate-600">
-            {type === "expense" ? "-" : ""} ${amount.toFixed(2)}
+            {type === "expense" ? "-" : ""} ${parseFloat(amount).toFixed(2)}
           </p>
         </div>
       </div>

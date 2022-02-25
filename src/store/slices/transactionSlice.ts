@@ -100,7 +100,7 @@ export const deleteTransaction = createAsyncThunk<string, any>(
 interface Transaction {
   description: string;
   merchant: string;
-  amount: number;
+  amount: string;
   type: string;
   category: string;
   date: string;
@@ -125,7 +125,11 @@ const initialState: TransactionState = {
 const transactionSlice = createSlice({
   name: "transacitons",
   initialState,
-  reducers: {},
+  reducers: {
+    clearTransaction: (state) => {
+      state.currentTransaction = null;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getUserTransactions.fulfilled, (state, { payload }) => {
       state.transactions = payload;
@@ -156,6 +160,6 @@ const transactionSlice = createSlice({
   },
 });
 
-// export const {} = transactionSlice.actions;
+export const { clearTransaction } = transactionSlice.actions;
 
 export default transactionSlice.reducer;

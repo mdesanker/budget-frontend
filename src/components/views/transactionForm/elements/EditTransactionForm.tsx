@@ -27,7 +27,20 @@ const EditTransactionForm = ({ id }: Props) => {
     (state: RootState) => state.transactions
   );
 
-  console.log(currentTransaction);
+  useEffect(() => {
+    if (currentTransaction) {
+      setFormData({
+        amount: currentTransaction ? currentTransaction.amount : "",
+        merchant: currentTransaction ? currentTransaction.merchant : "",
+        description: currentTransaction ? currentTransaction.description : "",
+        type: currentTransaction ? currentTransaction.type : "expense",
+        category: currentTransaction ? currentTransaction.category : "personal",
+        date: currentTransaction
+          ? DateTime.fromISO(currentTransaction.date).toISODate()
+          : DateTime.now().toISODate(),
+      });
+    }
+  }, [currentTransaction]);
 
   const [formData, setFormData] = useState({
     amount: "",
@@ -51,7 +64,6 @@ const EditTransactionForm = ({ id }: Props) => {
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     console.log(formData);
-    dispatch(addTransaction(formData));
   };
 
   return (
