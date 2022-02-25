@@ -11,7 +11,7 @@ const TransactionForm = () => {
   const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState({
-    amount: "",
+    amount: 0,
     merchant: "",
     description: "",
     type: "expense",
