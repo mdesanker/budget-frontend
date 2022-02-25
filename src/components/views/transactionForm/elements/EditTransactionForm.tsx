@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../TransactionForm.css";
 import { categories } from "../../../../utils/transactionCategories";
 import { DateTime } from "luxon";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import {
-  addTransaction,
+  editTransaction,
   getTransaction,
 } from "../../../../store/slices/transactionSlice";
 import { RootState } from "../../../../store/store";
@@ -17,6 +17,7 @@ interface Props {
 
 const EditTransactionForm = ({ id }: Props) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   // Load current transaction
   useEffect(() => {
@@ -63,7 +64,8 @@ const EditTransactionForm = ({ id }: Props) => {
 
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    console.log(formData);
+    dispatch(editTransaction({ id, transaction: formData }));
+    navigate("/dashboard");
   };
 
   return (

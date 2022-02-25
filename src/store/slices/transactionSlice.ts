@@ -79,6 +79,34 @@ export const addTransaction = createAsyncThunk<any, any>(
   }
 );
 
+export const editTransaction = createAsyncThunk<
+  any,
+  { id: string; transaction: any }
+>(
+  "transaction/edit",
+  async ({ id, transaction }, { dispatch, rejectWithValue }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(transaction);
+
+    try {
+      const res = await axios.put(`/transaction/edit/${id}`, body, config);
+
+      return res.data;
+    } catch (err: any) {
+      const errors = err.response.data.errors;
+      for (let error of errors) {
+        dispatch(timedAlert({ ...error, type: "danger" }));
+      }
+      rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const deleteTransaction = createAsyncThunk<string, any>(
   "transaction/delete",
   async (id, { dispatch, rejectWithValue }) => {
@@ -151,6 +179,14 @@ const transactionSlice = createSlice({
     });
     builder.addCase(addTransaction.fulfilled, (state, { payload }) => {
       state.transactions.push(payload);
+    });
+    builder.addCase(editTransaction.fulfilled, (state, { payload }) => {
+      // Get index of editted transaction
+      const index = state.transactions.findIndex(
+        (transaction) => transaction._id === payload._id
+      );
+      // Edit transaction in state
+      state.transactions[index] = payload;
     });
     builder.addCase(deleteTransaction.fulfilled, (state, { payload }) => {
       state.transactions = state.transactions.filter(

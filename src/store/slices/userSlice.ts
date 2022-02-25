@@ -30,7 +30,6 @@ export const registerUser = createAsyncThunk<string, User>(
     } catch (err: any) {
       const errors = err.response.data.errors;
       for (let error of errors) {
-        console.log(error);
         dispatch(timedAlert({ ...error, type: "danger" }));
       }
       return rejectWithValue(err.response.data);
@@ -74,7 +73,6 @@ export const loadUser = createAsyncThunk(
     try {
       const res = await axios.get("/user/detail");
 
-      console.log(res.data);
       return res.data;
     } catch (err: any) {
       const errors = err.response.data.errors;

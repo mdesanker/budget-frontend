@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import {
   clearTransaction,
   getTransactionsForXDays,
-  getUserTransactions,
 } from "../../../store/slices/transactionSlice";
 import { loadUser } from "../../../store/slices/userSlice";
 import Nav from "../../elements/Nav";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../TransactionForm.css";
 import { categories } from "../../../../utils/transactionCategories";
@@ -9,6 +9,7 @@ import { addTransaction } from "../../../../store/slices/transactionSlice";
 
 const AddTransactionForm = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     amount: "",
@@ -31,8 +32,8 @@ const AddTransactionForm = () => {
 
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    console.log(formData);
     dispatch(addTransaction(formData));
+    navigate("/dashboard");
   };
 
   return (
