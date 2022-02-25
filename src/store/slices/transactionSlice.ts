@@ -62,6 +62,23 @@ export const addTransaction = createAsyncThunk<any, any>(
   }
 );
 
+export const deleteTransaction = createAsyncThunk<string, any>(
+  "transaction/delete",
+  async (id, { dispatch, rejectWithValue }) => {
+    try {
+      await axios.delete(`/transaction/${id}`);
+
+      return id;
+    } catch (err: any) {
+      const errors = err.response.data.errors;
+      for (let error of errors) {
+        dispatch(timedAlert({ ...error, type: "danger" }));
+      }
+      rejectWithValue(err.response.data);
+    }
+  }
+);
+
 // TRANSACTION SLICE
 interface Transaction {
   description: string;
@@ -107,6 +124,11 @@ const transactionSlice = createSlice({
     });
     builder.addCase(addTransaction.fulfilled, (state, { payload }) => {
       state.transactions.push(payload);
+    });
+    builder.addCase(deleteTransaction.fulfilled, (state, { payload }) => {
+      state.transactions = state.transactions.filter(
+        (transaction) => transaction._id !== payload
+      );
     });
   },
 });

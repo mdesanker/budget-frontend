@@ -1,26 +1,42 @@
 import { DateTime } from "luxon";
 import { useEffect, useRef, useState } from "react";
-import { ITransactionDB } from "../../../../store/slices/transactionSlice";
+import { useAppDispatch } from "../../../../store/hooks";
+import {
+  deleteTransaction,
+  ITransactionDB,
+} from "../../../../store/slices/transactionSlice";
 
 interface TransactionProps {
   transaction: ITransactionDB;
 }
 
 const TransactionCard = ({ transaction }: TransactionProps) => {
+  const dispatch = useAppDispatch();
+  const cardRef = useRef(null);
+  useOutsideAlerter(cardRef);
+
   const [isActive, setIsActive] = useState(false);
 
-  const { description, merchant, amount, type, date, category } = transaction;
+  const { _id, description, merchant, amount, type, date, category } =
+    transaction;
 
   const formattedDate = DateTime.fromISO(date).toLocaleString(
     DateTime.DATE_MED
   );
 
+  // Handler functions
   const clickHandler = () => {
     setIsActive(!isActive);
   };
 
+  const editHandler = () => {};
+
+  const deleteHandler = () => {
+    dispatch(deleteTransaction(_id));
+  };
+
   // Collapse card on outside click
-  const useOutsideAlerter = (ref: any) => {
+  function useOutsideAlerter(ref: any) {
     useEffect(() => {
       const handleClickOutside = (e: any) => {
         if (ref.current && !ref.current.contains(e.target)) {
@@ -36,10 +52,7 @@ const TransactionCard = ({ transaction }: TransactionProps) => {
         document.removeEventListener("mousedown", handleClickOutside);
       };
     }, [ref]);
-  };
-
-  const cardRef = useRef(null);
-  useOutsideAlerter(cardRef);
+  }
 
   return (
     <div
@@ -67,7 +80,10 @@ const TransactionCard = ({ transaction }: TransactionProps) => {
           <button className="font-medium text-sky-600 uppercase tracking-widest border-2 border-sky-600 px-4 rounded duration-200 hover:text-sky-800 hover:border-sky-800">
             Edit
           </button>
-          <button className="font-medium text-red-600 uppercase tracking-widest border-2 border-red-600 px-4 rounded duration-200 hover:text-red-800 hover:border-red-800">
+          <button
+            onClick={deleteHandler}
+            className="font-medium text-red-600 uppercase tracking-widest border-2 border-red-600 px-4 rounded duration-200 hover:text-red-800 hover:border-red-800"
+          >
             Delete
           </button>
         </div>
