@@ -10,11 +10,21 @@ const DashHeader = () => {
     (state: RootState) => state.transactions
   );
 
-  const total =
+  const spent: any =
     transactions.length > 0 &&
     transactions
+      .filter((transaction) => transaction.type === "expense")
       .map((transaction) => transaction.amount)
       .reduce((a, b) => a + b);
+
+  const earned: any =
+    transactions.length > 0 &&
+    transactions
+      .filter((transaction) => transaction.type === "earning")
+      .map((transaction) => transaction.amount)
+      .reduce((a, b) => a + b);
+
+  const total = spent && earned && spent - earned;
 
   const [selectedOption, setSelectedOption] = useState("30");
 
