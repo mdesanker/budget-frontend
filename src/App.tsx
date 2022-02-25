@@ -5,7 +5,7 @@ import Register from "./components/views/auth/Register";
 import axios from "axios";
 import Dashboard from "./components/views/dashboard/Dashboard";
 import ProtectedRoute from "./utils/ProtectedRoute";
-import NewTransactionForm from "./components/views/newTransactionForm/NewTransactionForm";
+import AddTransaction from "./components/views/transactionForm/AddTransaction";
 
 axios.defaults.baseURL = "http://localhost:5000";
 
@@ -27,7 +27,7 @@ const App = () => {
           path="/transaction"
           element={
             // <ProtectedRoute>
-            <NewTransactionForm />
+            <AddTransaction />
             // </ProtectedRoute>
           }
         />

@@ -1,11 +1,11 @@
 import React from "react";
 import { fireEvent, screen } from "@testing-library/react";
-import NewTransactionForm from "./NewTransactionForm";
+import AddTransaction from "./AddTransaction";
 import { renderWithStateMgmtAndRouter } from "../../../utils/test-util";
 import { DateTime } from "luxon";
 
 beforeEach(() => {
-  renderWithStateMgmtAndRouter(<NewTransactionForm />);
+  renderWithStateMgmtAndRouter(<AddTransaction />);
 });
 
 describe.skip("add transaction form", () => {

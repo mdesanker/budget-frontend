@@ -1,9 +1,9 @@
 import React from "react";
-import TransactionForm from "./elements/TransactionForm";
+import TransactionForm from "./elements/AddTransactionForm";
 import TransactionFormHeader from "./elements/TransactionFormHeader";
-import "./NewTransactionForm.css";
+import "./TransactionForm.css";
 
-const NewTransactionForm = () => {
+const AddTransaction = () => {
   return (
     <main className="transaction-wrapper bg-stripe">
       <div className="transaction-card">
@@ -14,4 +14,4 @@ const NewTransactionForm = () => {
   );
 };
 
-export default NewTransactionForm;
+export default AddTransaction;
