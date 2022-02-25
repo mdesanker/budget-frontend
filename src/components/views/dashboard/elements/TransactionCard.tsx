@@ -1,5 +1,5 @@
 import { DateTime } from "luxon";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ITransactionDB } from "../../../../store/slices/transactionSlice";
 
 interface TransactionProps {
@@ -19,8 +19,33 @@ const TransactionCard = ({ transaction }: TransactionProps) => {
     setIsActive(!isActive);
   };
 
+  // Collapse card on outside click
+  const useOutsideAlerter = (ref: any) => {
+    useEffect(() => {
+      const handleClickOutside = (e: any) => {
+        if (ref.current && !ref.current.contains(e.target)) {
+          setTimeout(() => {
+            setIsActive(false);
+          }, 100);
+        }
+      };
+
+      document.addEventListener("mousedown", handleClickOutside);
+
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  };
+
+  const cardRef = useRef(null);
+  useOutsideAlerter(cardRef);
+
   return (
-    <div className="flex flex-col py-2 border-b border-slate-200 mb-2 hover:bg-slate-50 cursor-pointer">
+    <div
+      ref={cardRef}
+      className="flex flex-col py-2 border-b border-slate-200 mb-2 hover:bg-slate-50 cursor-pointer"
+    >
       <div onClick={clickHandler} className="flex justify-between w-full">
         <div className="text-left">
           <p>{description}</p>
