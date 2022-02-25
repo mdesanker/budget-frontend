@@ -29,8 +29,6 @@ const TransactionCard = ({ transaction }: TransactionProps) => {
     setIsActive(!isActive);
   };
 
-  const editHandler = () => {};
-
   const deleteHandler = () => {
     dispatch(deleteTransaction(_id));
   };

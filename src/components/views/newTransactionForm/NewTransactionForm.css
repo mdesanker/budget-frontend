@@ -1,3 +1,11 @@
+.transaction-wrapper {
+  @apply w-full h-full min-h-screen gap-2 flex flex-col items-center justify-center bg-gray-200;
+}
+
+.transaction-card {
+  @apply flex flex-col justify-center items-center bg-white rounded-md shadow-lg w-9/10 sm:w-auto;
+}
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
