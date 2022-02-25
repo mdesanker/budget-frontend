@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../../../store/hooks";
+import { RootState } from "../../../../store/store";
 import TransactionCard from "./TransactionCard";
 
 const DashTransactions = () => {
-  const { transactions } = useAppSelector((state) => state.transactions);
-
-  console.log(transactions);
+  const { transactions } = useAppSelector(
+    (state: RootState) => state.transactions
+  );
 
   return (
     <div className="px-6 py-4">
