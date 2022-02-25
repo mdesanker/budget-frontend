@@ -1,5 +1,6 @@
 import { DateTime } from "luxon";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../../../store/hooks";
 import {
   deleteTransaction,
@@ -75,9 +76,12 @@ const TransactionCard = ({ transaction }: TransactionProps) => {
       </div>
       {isActive && (
         <div className="py-2 flex justify-around items-center w-full">
-          <button className="font-medium text-sky-600 uppercase tracking-widest border-2 border-sky-600 px-4 rounded duration-200 hover:text-sky-800 hover:border-sky-800">
+          <Link
+            to={`/transaction/${_id}/edit`}
+            className="font-medium text-sky-600 uppercase tracking-widest border-2 border-sky-600 px-4 rounded duration-200 hover:text-sky-800 hover:border-sky-800"
+          >
             Edit
-          </button>
+          </Link>
           <button
             onClick={deleteHandler}
             className="font-medium text-red-600 uppercase tracking-widest border-2 border-red-600 px-4 rounded duration-200 hover:text-red-800 hover:border-red-800"

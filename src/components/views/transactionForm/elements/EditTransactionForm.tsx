@@ -1,14 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "../TransactionForm.css";
 import { categories } from "../../../../utils/transactionCategories";
 import { DateTime } from "luxon";
-import { useAppDispatch } from "../../../../store/hooks";
-import { addTransaction } from "../../../../store/slices/transactionSlice";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import {
+  addTransaction,
+  getTransaction,
+} from "../../../../store/slices/transactionSlice";
+import { RootState } from "../../../../store/store";
 
-const AddTransactionForm = () => {
+interface Props {
+  id: string;
+}
+
+const EditTransactionForm = ({ id }: Props) => {
   const dispatch = useAppDispatch();
+
+  // Load current transaction
+  useEffect(() => {
+    dispatch(getTransaction(id));
+  }, []);
+
+  const { currentTransaction } = useAppSelector(
+    (state: RootState) => state.transactions
+  );
+
+  console.log(currentTransaction);
 
   const [formData, setFormData] = useState({
     amount: "",
@@ -156,7 +175,7 @@ const AddTransactionForm = () => {
           className="outline-none text-xl w-full pb-1"
         />
       </div>
-      <button className="submit-btn">Add Transaction</button>
+      <button className="submit-btn">Update Transaction</button>
       <Link
         to="/dashboard"
         className="text-sky-700 font-medium hover:underline mt-4"
@@ -167,4 +186,4 @@ const AddTransactionForm = () => {
   );
 };
 
-export default AddTransactionForm;
+export default EditTransactionForm;

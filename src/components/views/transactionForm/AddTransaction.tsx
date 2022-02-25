@@ -1,5 +1,5 @@
 import React from "react";
-import TransactionForm from "./elements/AddTransactionForm";
+import AddTransactionForm from "./elements/AddTransactionForm";
 import TransactionFormHeader from "./elements/TransactionFormHeader";
 import "./TransactionForm.css";
 
@@ -8,7 +8,7 @@ const AddTransaction = () => {
     <main className="transaction-wrapper bg-stripe">
       <div className="transaction-card">
         <TransactionFormHeader title="New Transaction" />
-        <TransactionForm />
+        <AddTransactionForm />
       </div>
     </main>
   );

@@ -20,6 +20,23 @@ export const getUserTransactions = createAsyncThunk(
   }
 );
 
+export const getTransaction = createAsyncThunk<any, string>(
+  "transaction/get",
+  async (id, { dispatch, rejectWithValue }) => {
+    try {
+      const res = await axios.get(`/transaction/${id}`);
+
+      return res.data;
+    } catch (err: any) {
+      const errors = err.response.data.errors;
+      for (let error of errors) {
+        dispatch(timedAlert({ ...error, type: "danger" }));
+      }
+      rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const getTransactionsForXDays = createAsyncThunk<any, string>(
   "transactions/getXDays",
   async (days, { dispatch, rejectWithValue }) => {
@@ -115,6 +132,12 @@ const transactionSlice = createSlice({
     });
     builder.addCase(getUserTransactions.rejected, (state) => {
       state.transactions = [];
+    });
+    builder.addCase(getTransaction.fulfilled, (state, { payload }) => {
+      state.currentTransaction = payload;
+    });
+    builder.addCase(getTransaction.rejected, (state) => {
+      state.currentTransaction = null;
     });
     builder.addCase(getTransactionsForXDays.fulfilled, (state, { payload }) => {
       state.transactions = payload;
