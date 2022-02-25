@@ -20,11 +20,8 @@ const TransactionCard = ({ transaction }: TransactionProps) => {
   };
 
   return (
-    <button
-      onClick={clickHandler}
-      className="flex flex-col py-2 border-b border-slate-200 mb-2 hover:bg-slate-50"
-    >
-      <div className="flex justify-between w-full">
+    <div className="flex flex-col py-2 border-b border-slate-200 mb-2 hover:bg-slate-50 cursor-pointer">
+      <div onClick={clickHandler} className="flex justify-between w-full">
         <div className="text-left">
           <p>{description}</p>
           <p className="font-semibold">{merchant}</p>
@@ -42,11 +39,15 @@ const TransactionCard = ({ transaction }: TransactionProps) => {
       </div>
       {isActive && (
         <div className="py-2 flex justify-around items-center w-full">
-          <button>Edit</button>
-          <button>Delete</button>
+          <button className="font-medium text-sky-600 uppercase tracking-widest border-2 border-sky-600 px-4 rounded duration-200 hover:text-sky-800 hover:border-sky-800">
+            Edit
+          </button>
+          <button className="font-medium text-red-600 uppercase tracking-widest border-2 border-red-600 px-4 rounded duration-200 hover:text-red-800 hover:border-red-800">
+            Delete
+          </button>
         </div>
       )}
-    </button>
+    </div>
   );
 };
 
