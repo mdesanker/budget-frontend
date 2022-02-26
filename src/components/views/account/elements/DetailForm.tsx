@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useAppSelector } from "../../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { updateUser } from "../../../../store/slices/userSlice";
 import { RootState } from "../../../../store/store";
 
 interface Props {
@@ -7,6 +8,8 @@ interface Props {
 }
 
 const DetailForm = ({ closeForm }: Props) => {
+  const dispatch = useAppDispatch();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,6 +27,7 @@ const DetailForm = ({ closeForm }: Props) => {
 
   const submitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // dispatch(updateUser(formData));
     closeForm();
   };
 

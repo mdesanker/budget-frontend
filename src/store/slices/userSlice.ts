@@ -84,6 +84,32 @@ export const loadUser = createAsyncThunk(
   }
 );
 
+export const updateUser = createAsyncThunk<any, any>(
+  "user/update",
+  async (user, { dispatch, rejectWithValue }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(user);
+
+    try {
+      const res = await axios.put("/user/update", body, config);
+
+      console.log(res.data);
+      return res.data;
+    } catch (err: any) {
+      const errors = err.response.data.errors;
+      for (let error of errors) {
+        dispatch(timedAlert({ ...error, type: "danger" }));
+      }
+      rejectWithValue(err.response.data);
+    }
+  }
+);
+
 // USER SLICE
 interface UserState {
   token: string | null;
@@ -147,6 +173,9 @@ const userSlice = createSlice({
       state.token = null;
       state.user = null;
       state.isAuthenticated = false;
+    });
+    builder.addCase(updateUser.fulfilled, (state, { payload }) => {
+      state.user = payload;
     });
   },
 });
