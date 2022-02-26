@@ -14,6 +14,14 @@ const DetailForm = ({ closeForm }: Props) => {
 
   const { user } = useAppSelector((state: RootState) => state.user);
 
+  const formChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setFormData((prevState) => {
+      return { ...prevState, [name]: value };
+    });
+  };
+
   const submitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     closeForm();
@@ -40,6 +48,7 @@ const DetailForm = ({ closeForm }: Props) => {
           id="name"
           value={name}
           className="form-field"
+          onChange={formChangeHandler}
         />
       </label>
       <label htmlFor="email" className="account-group">
@@ -50,6 +59,7 @@ const DetailForm = ({ closeForm }: Props) => {
           id="email"
           value={email}
           className="form-field"
+          onChange={formChangeHandler}
         />
       </label>
       <button className="p-1 font-medium bg-gray-300 rounded my-1">

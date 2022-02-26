@@ -19,5 +19,5 @@
 }
 
 .form-field {
-  @apply border-b w-full;
+  @apply border-b w-full outline-none;
 }
