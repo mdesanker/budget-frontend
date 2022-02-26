@@ -1,19 +1,31 @@
-import { RiPencilFill } from "react-icons/ri";
+import { RiPencilFill, RiDeleteBinLine } from "react-icons/ri";
+import { ImExit } from "react-icons/im";
 import Nav from "../../elements/Nav";
 import "./Account.css";
 import Details from "./elements/Details";
 import DetailForm from "./elements/DetailForm";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../../store/hooks";
+import { logout } from "../../../store/slices/userSlice";
 
 const Account = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const [showForm, setShowForm] = useState(false);
 
   const showFormHandler = () => {
     setShowForm(!showForm);
   };
 
+  const logoutHandler = () => {
+    dispatch(logout());
+    navigate("/");
+  };
+
   return (
-    <main className="flex justify-center items-start pt-12 bg-gray-100 min-h-screen pb-16">
+    <main className="flex flex-col justify-start items-center pt-12 bg-gray-100 min-h-screen pb-16">
       <div className="account-card">
         <div className="account-header relative">
           <h1>Your Account</h1>
@@ -27,6 +39,24 @@ const Account = () => {
         {!showForm && <Details />}
         {showForm && <DetailForm closeForm={showFormHandler} />}
       </div>
+      <ul className="w-full flex flex-col items-center pt-4">
+        <li>
+          <button className="account-btn" onClick={logoutHandler}>
+            <div>
+              <ImExit className="h-6 w-6" />
+            </div>
+            Log out
+          </button>
+        </li>
+        {/* <li>
+          <button className="account-btn">
+            <div>
+              <RiDeleteBinLine className="h-6 w-6" />
+            </div>
+            Delete account
+          </button>
+        </li> */}
+      </ul>
       <Nav />
     </main>
   );
