@@ -19,11 +19,13 @@ const Account = () => {
           <h1>Your Account</h1>
           <RiPencilFill
             onClick={showFormHandler}
-            className="edit-icon absolute top-1/2 right-0 -translate-y-1/2"
+            className={`edit-icon absolute top-1/2 right-0 -translate-y-1/2 ${
+              showForm && "text-blue-500 hover:text-blue-500"
+            }`}
           />
         </div>
         {!showForm && <Details />}
-        {showForm && <DetailForm />}
+        {showForm && <DetailForm closeForm={showFormHandler} />}
       </div>
       <Nav />
     </main>

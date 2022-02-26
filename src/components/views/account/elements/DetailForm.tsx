@@ -1,14 +1,23 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useAppSelector } from "../../../../store/hooks";
 import { RootState } from "../../../../store/store";
 
-const DetailForm = () => {
+interface Props {
+  closeForm: () => void;
+}
+
+const DetailForm = ({ closeForm }: Props) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
   });
 
   const { user } = useAppSelector((state: RootState) => state.user);
+
+  const submitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    closeForm();
+  };
 
   useEffect(() => {
     if (user) {
@@ -22,7 +31,7 @@ const DetailForm = () => {
   const { name, email } = formData;
 
   return (
-    <form className="w-full flex flex-col text-lg">
+    <form onSubmit={submitHandler} className="w-full flex flex-col text-lg">
       <label htmlFor="name" className="account-group">
         <span className="account-label">Name: </span>{" "}
         <input
