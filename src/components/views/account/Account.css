@@ -6,10 +6,18 @@
   @apply font-semibold text-lg w-full border-b text-center mb-4;
 }
 
-.account-group {
-  @apply flex justify-between items-center w-full text-lg pb-2;
-}
-
 .edit-icon {
   @apply text-gray-300 cursor-pointer hover:text-gray-400;
+}
+
+.account-group {
+  @apply flex h-12 gap-2 items-center w-full text-lg;
+}
+
+.account-label {
+  @apply font-medium pr-1;
+}
+
+.form-field {
+  @apply border-b w-full;
 }
