@@ -15,7 +15,7 @@
 }
 
 .account-label {
-  @apply font-medium pr-1;
+  @apply font-medium pr-1 whitespace-nowrap;
 }
 
 .form-field {

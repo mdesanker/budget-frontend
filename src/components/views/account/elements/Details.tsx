@@ -10,8 +10,12 @@ const Details = () => {
   return (
     <>
       <p className="account-group">
-        <span className="account-label">Name:</span>{" "}
-        {user && user.name.firstName} {user && user.name.lastName}
+        <span className="account-label">First Name:</span>{" "}
+        {user && user.name.firstName}
+      </p>
+      <p className="account-group">
+        <span className="account-label">Last Name:</span>{" "}
+        {user && user.name.lastName}
       </p>
       <p className="account-group">
         <span className="account-label">Email:</span> {user && user.email}

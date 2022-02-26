@@ -11,7 +11,8 @@ const DetailForm = ({ closeForm }: Props) => {
   const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
   });
 
@@ -27,30 +28,42 @@ const DetailForm = ({ closeForm }: Props) => {
 
   const submitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // dispatch(updateUser(formData));
+    dispatch(updateUser(formData));
     closeForm();
   };
 
   useEffect(() => {
     if (user) {
       setFormData({
-        name: `${user.name.firstName} ${user.name.lastName}`,
+        firstName: user.name.firstName,
+        lastName: user.name.lastName,
         email: user.email,
       });
     }
   }, [user]);
 
-  const { name, email } = formData;
+  const { firstName, lastName, email } = formData;
 
   return (
     <form onSubmit={submitHandler} className="w-full flex flex-col text-lg">
-      <label htmlFor="name" className="account-group">
-        <span className="account-label">Name: </span>{" "}
+      <label htmlFor="firstName" className="account-group">
+        <span className="account-label">First Name: </span>{" "}
         <input
           type="text"
-          name="name"
-          id="name"
-          value={name}
+          name="firstName"
+          id="firstName"
+          value={firstName}
+          className="form-field"
+          onChange={formChangeHandler}
+        />
+      </label>
+      <label htmlFor="lastName" className="account-group">
+        <span className="account-label">Last Name: </span>{" "}
+        <input
+          type="text"
+          name="lastName"
+          id="lastName"
+          value={lastName}
           className="form-field"
           onChange={formChangeHandler}
         />
