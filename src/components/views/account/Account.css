@@ -1,0 +1,15 @@
+.account-card {
+  @apply flex flex-col items-center bg-white p-6 shadow-sm w-full sm:w-[400px];
+}
+
+.account-header {
+  @apply font-semibold text-lg w-full border-b text-center mb-4;
+}
+
+.account-group {
+  @apply flex justify-between items-center w-full text-lg pb-2;
+}
+
+.edit-icon {
+  @apply text-gray-300 cursor-pointer hover:text-gray-400;
+}

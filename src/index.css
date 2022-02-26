@@ -13,3 +13,9 @@
     );
   }
 }
+
+@layer utilities {
+  .card {
+    @apply relative w-9/10 flex flex-col justify-center px-6 sm:w-auto rounded-2xl shadow-lg items-center overflow-hidden bg-white;
+  }
+}
