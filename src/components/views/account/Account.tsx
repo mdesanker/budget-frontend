@@ -26,6 +26,10 @@ const Account = () => {
     navigate("/");
   };
 
+  const showDeleteHandler = () => {
+    setShowDelete(!showDelete);
+  };
+
   return (
     <main className="flex flex-col justify-start items-center pt-12 bg-gray-100 min-h-screen pb-16">
       <div className="account-card">
@@ -52,7 +56,10 @@ const Account = () => {
         </li>
         {!showDelete && (
           <li>
-            <button className="account-btn text-red-600">
+            <button
+              className="account-btn text-red-600"
+              onClick={showDeleteHandler}
+            >
               <div>
                 <RiDeleteBinLine className="h-6 w-6" />
               </div>
@@ -60,7 +67,7 @@ const Account = () => {
             </button>
           </li>
         )}
-        {showDelete && <DeleteConfirmation />}
+        {showDelete && <DeleteConfirmation cancelDelete={showDeleteHandler} />}
       </ul>
       <Nav />
     </main>
