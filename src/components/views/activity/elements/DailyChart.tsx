@@ -40,7 +40,7 @@ const labels = [
   "Wednesday",
   "Thursday",
   "Friday",
-  "Sadturday",
+  "Saturday",
 ];
 
 export const data = {
@@ -54,7 +54,7 @@ export const data = {
   ],
 };
 
-const Chart = () => {
+const DailyChart = () => {
   return (
     <div className="relative w-9/10 max-w-2xl">
       <h1 className="text-center font-semibold text-xl">Daily Expenses</h1>
@@ -63,4 +63,4 @@ const Chart = () => {
   );
 };
 
-export default Chart;
+export default DailyChart;
