@@ -4,28 +4,19 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
-  Title,
   Tooltip,
-  Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import faker from "@faker-js/faker";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Tooltip
-  // Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
 export const options = {
   responsive: true,
   plugins: {
-    // legend: {
-    //   display: false,
-    //   position: "top" as const,
-    // },
+    legend: {
+      display: false,
+    },
     title: {
       display: true,
       text: "Weekly Expenses",
