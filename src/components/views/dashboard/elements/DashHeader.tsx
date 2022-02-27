@@ -3,9 +3,15 @@ import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { getTransactionsForXDays } from "../../../../store/slices/transactionSlice";
 import { RootState } from "../../../../store/store";
 
-const DashHeader = () => {
-  const dispatch = useAppDispatch();
+interface Props {
+  setTimespan: (value: number) => void;
+}
+
+const DashHeader = ({ setTimespan }: Props) => {
+  // Get current user for greeting
   const { user } = useAppSelector((state: RootState) => state.user);
+
+  // Get transactions for calculations
   const { transactions } = useAppSelector(
     (state: RootState) => state.transactions
   );
@@ -29,8 +35,8 @@ const DashHeader = () => {
   const [selectedOption, setSelectedOption] = useState("30");
 
   const selectHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setTimespan(parseInt(e.target.value));
     setSelectedOption(e.target.value);
-    dispatch(getTransactionsForXDays(e.target.value));
   };
 
   return (

@@ -1,7 +1,7 @@
 export const categories = [
   { value: "auto", name: "Automotive" },
   { value: "bills", name: "Bills & Utilities" },
-  { value: "educaiton", name: "Education" },
+  { value: "education", name: "Education" },
   { value: "entertainment", name: "Entertainment" },
   { value: "food", name: "Food & Drink" },
   { value: "gifts", name: "Gifts & Donations" },

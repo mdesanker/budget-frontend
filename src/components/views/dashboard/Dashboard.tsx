@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import {
   clearTransaction,
@@ -11,6 +11,12 @@ import DashTransactions from "./elements/DashTransactions";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
+
+  const [timespan, setTimespan] = useState(30);
+
+  const setTimespanHandler = (value: number) => {
+    setTimespan(value);
+  };
 
   const { user } = useAppSelector((state) => state.user);
 
@@ -27,8 +33,8 @@ const Dashboard = () => {
 
   return (
     <main className="mb-16">
-      <DashHeader />
-      <DashTransactions />
+      <DashHeader setTimespan={setTimespanHandler} />
+      <DashTransactions timespan={timespan} />
       <Nav />
     </main>
   );

@@ -2,11 +2,22 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../../../../store/hooks";
 import { RootState } from "../../../../store/store";
 import TransactionCard from "./TransactionCard";
+import { DateTime } from "luxon";
 
-const DashTransactions = () => {
+interface Props {
+  timespan: number;
+}
+
+const DashTransactions = ({ timespan }: Props) => {
   const { transactions } = useAppSelector(
     (state: RootState) => state.transactions
   );
+
+  const selectTransactions = transactions.filter((transaction) => {
+    const today: number = new Date().getTime();
+    const transactionDate: number = new Date(transaction.date).getTime();
+    return Math.abs(today - transactionDate) < 1000 * 60 * 60 * 24 * timespan;
+  });
 
   return (
     <div className="px-6 py-4">
@@ -25,8 +36,8 @@ const DashTransactions = () => {
             No recent transactions
           </p>
         )}
-        {transactions &&
-          transactions.map((transaction) => {
+        {selectTransactions &&
+          selectTransactions.map((transaction) => {
             return (
               <TransactionCard
                 key={transaction._id}
