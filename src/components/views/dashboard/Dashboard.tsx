@@ -11,14 +11,13 @@ import DashTransactions from "./elements/DashTransactions";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.user);
 
   const [timespan, setTimespan] = useState(30);
 
   const setTimespanHandler = (value: number) => {
     setTimespan(value);
   };
-
-  const { user } = useAppSelector((state) => state.user);
 
   // Load user data
   useEffect(() => {

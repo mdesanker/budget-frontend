@@ -3,21 +3,24 @@ import { useAppSelector } from "../../../../store/hooks";
 import { RootState } from "../../../../store/store";
 import TransactionCard from "./TransactionCard";
 import { DateTime } from "luxon";
+import { ITransactionDB } from "../../../../store/slices/transactionSlice";
 
 interface Props {
   timespan: number;
 }
 
 const DashTransactions = ({ timespan }: Props) => {
-  const { transactions } = useAppSelector(
+  const { monthTransactions, weekTransactions } = useAppSelector(
     (state: RootState) => state.transactions
   );
 
-  const selectTransactions = transactions.filter((transaction) => {
-    const today: number = new Date().getTime();
-    const transactionDate: number = new Date(transaction.date).getTime();
-    return Math.abs(today - transactionDate) < 1000 * 60 * 60 * 24 * timespan;
-  });
+  let selected: ITransactionDB[];
+
+  if (timespan === 30) {
+    selected = monthTransactions;
+  } else {
+    selected = weekTransactions;
+  }
 
   return (
     <div className="px-6 py-4">
@@ -31,13 +34,13 @@ const DashTransactions = ({ timespan }: Props) => {
         </Link>
       </div>
       <div className="flex flex-col">
-        {transactions.length === 0 && (
+        {selected.length === 0 && (
           <p className="py-2 text-center text-gray-500">
             No recent transactions
           </p>
         )}
-        {selectTransactions &&
-          selectTransactions.map((transaction) => {
+        {selected &&
+          selected.map((transaction) => {
             return (
               <TransactionCard
                 key={transaction._id}

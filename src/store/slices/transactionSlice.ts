@@ -125,6 +125,10 @@ export interface ITransactionDB extends Transaction {
 
 interface TransactionState {
   transactions: ITransactionDB[];
+  // month: {
+  //   transactions: ITransactionDB[];
+  //   total: number;
+  // };
   monthTransactions: ITransactionDB[];
   weekTransactions: ITransactionDB[];
   currentTransaction: ITransactionDB | null;
@@ -132,6 +136,10 @@ interface TransactionState {
 
 const initialState: TransactionState = {
   transactions: [],
+  // month: {
+  //   transactions: [],
+  //   total: 0,
+  // },
   monthTransactions: [],
   weekTransactions: [],
   currentTransaction: null,
