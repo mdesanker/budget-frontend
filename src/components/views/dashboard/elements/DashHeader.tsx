@@ -1,6 +1,7 @@
 import { useAppSelector } from "../../../../store/hooks";
 import { ITransactionDB } from "../../../../store/slices/transactionSlice";
 import { RootState } from "../../../../store/store";
+import { totalSpent } from "../../../../utils/utilFunctions";
 
 interface Props {
   timespan: number;
@@ -28,22 +29,6 @@ const DashHeader = ({ timespan, setTimespan }: Props) => {
     setTimespan(parseInt(e.target.value));
   };
 
-  const spent: any =
-    selected.length > 0 &&
-    selected
-      .filter((transaction) => transaction.type === "expense")
-      .map((transaction) => transaction.amount)
-      .reduce((a, b) => a + b);
-
-  const earned: any =
-    selected.length > 0 &&
-    selected
-      .filter((transaction) => transaction.type === "earning")
-      .map((transaction) => transaction.amount)
-      .reduce((a, b) => a + b);
-
-  const total = spent && earned && spent - earned;
-
   return (
     <header className="flex flex-col w-full items-center p-8 bg-gray-200">
       <div className="w-full pb-4">
@@ -55,7 +40,7 @@ const DashHeader = ({ timespan, setTimespan }: Props) => {
       <div className="flex w-full bg-white rounded-md shadow-xl px-2 py-6">
         <div className="flex flex-col w-2/3 justify-center items-center gap-2 border-r-2">
           <p className="text-4xl font-semibold">
-            ${total ? total.toFixed(2) : " - "}
+            {selected ? totalSpent(selected) : "-"}
           </p>
           <p className="text-gray-500">What you've spent</p>
         </div>
