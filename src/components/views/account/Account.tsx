@@ -8,12 +8,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../store/hooks";
 import { logout } from "../../../store/slices/userSlice";
+import DeleteConfirmation from "./elements/DeleteConfirmation";
 
 const Account = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [showForm, setShowForm] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
 
   const showFormHandler = () => {
     setShowForm(!showForm);
@@ -48,14 +50,17 @@ const Account = () => {
             Log out
           </button>
         </li>
-        {/* <li>
-          <button className="account-btn">
-            <div>
-              <RiDeleteBinLine className="h-6 w-6" />
-            </div>
-            Delete account
-          </button>
-        </li> */}
+        {!showDelete && (
+          <li>
+            <button className="account-btn text-red-600">
+              <div>
+                <RiDeleteBinLine className="h-6 w-6" />
+              </div>
+              Delete account
+            </button>
+          </li>
+        )}
+        {showDelete && <DeleteConfirmation />}
       </ul>
       <Nav />
     </main>
