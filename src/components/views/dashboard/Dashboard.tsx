@@ -13,6 +13,7 @@ const Dashboard = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
 
+  // State for transactions to display
   const [timespan, setTimespan] = useState(30);
 
   const setTimespanHandler = (value: number) => {
@@ -32,7 +33,7 @@ const Dashboard = () => {
 
   return (
     <main className="mb-16">
-      <DashHeader setTimespan={setTimespanHandler} />
+      <DashHeader timespan={timespan} setTimespan={setTimespanHandler} />
       <DashTransactions timespan={timespan} />
       <Nav />
     </main>

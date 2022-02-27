@@ -1,42 +1,48 @@
-import { useState } from "react";
 import { useAppSelector } from "../../../../store/hooks";
+import { ITransactionDB } from "../../../../store/slices/transactionSlice";
 import { RootState } from "../../../../store/store";
 
 interface Props {
+  timespan: number;
   setTimespan: (value: number) => void;
 }
 
-const DashHeader = ({ setTimespan }: Props) => {
+const DashHeader = ({ timespan, setTimespan }: Props) => {
   // Get current user for greeting
   const { user } = useAppSelector((state: RootState) => state.user);
 
   // Get transactions for calculations
-  const { transactions } = useAppSelector(
+  const { monthTransactions, weekTransactions } = useAppSelector(
     (state: RootState) => state.transactions
   );
 
+  let selected: ITransactionDB[] = [];
+
+  if (timespan === 30) {
+    selected = monthTransactions;
+  } else {
+    selected = weekTransactions;
+  }
+
+  const selectHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setTimespan(parseInt(e.target.value));
+  };
+
   const spent: any =
-    transactions.length > 0 &&
-    transactions
+    selected.length > 0 &&
+    selected
       .filter((transaction) => transaction.type === "expense")
       .map((transaction) => transaction.amount)
       .reduce((a, b) => a + b);
 
   const earned: any =
-    transactions.length > 0 &&
-    transactions
+    selected.length > 0 &&
+    selected
       .filter((transaction) => transaction.type === "earning")
       .map((transaction) => transaction.amount)
       .reduce((a, b) => a + b);
 
   const total = spent && earned && spent - earned;
-
-  const [selectedOption, setSelectedOption] = useState("30");
-
-  const selectHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setTimespan(parseInt(e.target.value));
-    setSelectedOption(e.target.value);
-  };
 
   return (
     <header className="flex flex-col w-full items-center p-8 bg-gray-200">
@@ -58,8 +64,9 @@ const DashHeader = ({ setTimespan }: Props) => {
             name="days"
             id="days"
             className="text-4xl text-blue-600 font-semibold bg-transparent text-center px-2 outline-none"
-            value={selectedOption}
+            // value={selectedOption}
             onChange={selectHandler}
+            defaultValue="30"
           >
             <option value="7" className="text-xl text-black">
               7

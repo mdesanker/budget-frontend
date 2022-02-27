@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../../../../store/hooks";
 import { RootState } from "../../../../store/store";
 import TransactionCard from "./TransactionCard";
-import { DateTime } from "luxon";
 import { ITransactionDB } from "../../../../store/slices/transactionSlice";
 
 interface Props {
@@ -14,7 +13,7 @@ const DashTransactions = ({ timespan }: Props) => {
     (state: RootState) => state.transactions
   );
 
-  let selected: ITransactionDB[];
+  let selected: ITransactionDB[] = [];
 
   if (timespan === 30) {
     selected = monthTransactions;
