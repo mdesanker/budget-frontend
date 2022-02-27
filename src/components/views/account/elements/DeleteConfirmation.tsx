@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { deleteUser } from "../../../../store/slices/userSlice";
 
 interface Props {
   cancelDelete: () => void;
@@ -9,8 +10,10 @@ const DeleteConfirmation = ({ cancelDelete }: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const { user } = useAppSelector((state) => state.user);
+
   const deleteAccountHandler = () => {
-    console.log("Delete account");
+    if (user) dispatch(deleteUser(user._id));
     navigate("/");
   };
 

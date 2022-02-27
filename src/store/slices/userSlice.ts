@@ -51,7 +51,6 @@ export const loginUser = createAsyncThunk<string, User>(
     try {
       const res = await axios.post("auth/login", body, config);
 
-      console.log(res.data.token);
       return res.data.token;
     } catch (err: any) {
       const errors = err.response.data.errors;
@@ -98,7 +97,23 @@ export const updateUser = createAsyncThunk<any, any>(
     try {
       const res = await axios.put("/user/update", body, config);
 
-      console.log(res.data);
+      return res.data;
+    } catch (err: any) {
+      const errors = err.response.data.errors;
+      for (let error of errors) {
+        dispatch(timedAlert({ ...error, type: "danger" }));
+      }
+      rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const deleteUser = createAsyncThunk<string, string>(
+  "user/delete",
+  async (id, { dispatch, rejectWithValue }) => {
+    try {
+      const res = await axios.delete(`/user/${id}`);
+
       return res.data;
     } catch (err: any) {
       const errors = err.response.data.errors;
@@ -176,6 +191,11 @@ const userSlice = createSlice({
     });
     builder.addCase(updateUser.fulfilled, (state, { payload }) => {
       state.user = payload;
+    });
+    builder.addCase(deleteUser.fulfilled, (state) => {
+      state.token = null;
+      state.user = null;
+      state.isAuthenticated = false;
     });
   },
 });
