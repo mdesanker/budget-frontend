@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../store/hooks";
 import { logout } from "../../../store/slices/userSlice";
 import DeleteConfirmation from "./elements/DeleteConfirmation";
+import { clearAllTransactions } from "../../../store/slices/transactionSlice";
 
 const Account = () => {
   const dispatch = useAppDispatch();
@@ -23,6 +24,7 @@ const Account = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
+    dispatch(clearAllTransactions());
     navigate("/");
   };
 

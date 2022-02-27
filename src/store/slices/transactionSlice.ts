@@ -149,6 +149,12 @@ const transactionSlice = createSlice({
   name: "transacitons",
   initialState,
   reducers: {
+    clearAllTransactions: (state) => {
+      state.transactions = [];
+      state.monthTransactions = [];
+      state.weekTransactions = [];
+      state.currentTransaction = null;
+    },
     clearTransaction: (state) => {
       state.currentTransaction = null;
     },
@@ -199,6 +205,7 @@ const transactionSlice = createSlice({
   },
 });
 
-export const { clearTransaction } = transactionSlice.actions;
+export const { clearAllTransactions, clearTransaction } =
+  transactionSlice.actions;
 
 export default transactionSlice.reducer;
