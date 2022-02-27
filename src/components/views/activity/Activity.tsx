@@ -6,7 +6,7 @@ import MonthlyChart from "./elements/MonthlyChart";
 const Activity = () => {
   return (
     <main className="flex flex-col items-center">
-      <h1>Activity</h1>
+      <h1 className="font-bold text-2xl p-2 mb-4">Activity</h1>
       <DailyChart />
       <MonthlyChart />
       <CategoryDonut />

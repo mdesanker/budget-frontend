@@ -48,7 +48,7 @@ export const data = {
 const DailyChart = () => {
   return (
     <div className="relative w-9/10 max-w-2xl">
-      <h1 className="text-center font-semibold text-xl">Daily Expenses</h1>
+      <h2 className="text-center font-semibold text-xl">Daily Expenses</h2>
       <Bar options={options} data={data} className="mb-16" />
     </div>
   );

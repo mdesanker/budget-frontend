@@ -32,9 +32,9 @@ export const data = {
 const CategoryDonut = () => {
   return (
     <div className="mb-16">
-      <h1 className="text-center font-semibold text-xl">
+      <h2 className="text-center font-semibold text-xl">
         Expenses by Category
-      </h1>
+      </h2>
       <Doughnut data={data} />
     </div>
   );
