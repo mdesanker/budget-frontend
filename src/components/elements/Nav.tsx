@@ -35,7 +35,7 @@ const Nav = () => {
         </li>
         <li>
           <NavLink
-            to="#"
+            to="/activity"
             className={`flex flex-col gap-1 px-2 justify-center items-center text-gray-500 ${
               location.pathname === "/activity" ? "text-blue-500" : ""
             }`}

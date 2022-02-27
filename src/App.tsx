@@ -8,6 +8,7 @@ import ProtectedRoute from "./utils/ProtectedRoute";
 import AddTransaction from "./components/views/transactionForm/AddTransaction";
 import EditTransaction from "./components/views/transactionForm/EditTransaction";
 import Account from "./components/views/account/Account";
+import Activity from "./components/views/activity/Activity";
 
 axios.defaults.baseURL = "http://localhost:5000";
 
@@ -46,6 +47,14 @@ const App = () => {
           element={
             // <ProtectedRoute>
             <Account />
+            // </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/activity"
+          element={
+            // <ProtectedRoute>
+            <Activity />
             // </ProtectedRoute>
           }
         />
