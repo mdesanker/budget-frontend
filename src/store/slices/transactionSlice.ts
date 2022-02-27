@@ -37,23 +37,6 @@ export const getTransaction = createAsyncThunk<any, string>(
   }
 );
 
-export const getTransactionsForXDays = createAsyncThunk<any, string>(
-  "transactions/getXDays",
-  async (days, { dispatch, rejectWithValue }) => {
-    try {
-      const res = await axios.get(`/transaction/user/${days}`);
-
-      return res.data;
-    } catch (err: any) {
-      const errors = err.response.data.errors;
-      for (let error of errors) {
-        dispatch(timedAlert({ ...error, type: "danger" }));
-      }
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
-
 export const addTransaction = createAsyncThunk<any, any>(
   "transaction/add",
   async (transaction, { dispatch, rejectWithValue }) => {
@@ -142,11 +125,15 @@ export interface ITransactionDB extends Transaction {
 
 interface TransactionState {
   transactions: ITransactionDB[];
+  monthTransactions: ITransactionDB[];
+  weekTransactions: ITransactionDB[];
   currentTransaction: ITransactionDB | null;
 }
 
 const initialState: TransactionState = {
   transactions: [],
+  monthTransactions: [],
+  weekTransactions: [],
   currentTransaction: null,
 };
 
@@ -161,21 +148,29 @@ const transactionSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getUserTransactions.fulfilled, (state, { payload }) => {
       state.transactions = payload;
+      state.monthTransactions = payload.filter(
+        (transaction: ITransactionDB) => {
+          const today: number = new Date().getTime();
+          const transactionDate: number = new Date(transaction.date).getTime();
+          return Math.abs(today - transactionDate) < 1000 * 60 * 60 * 24 * 30;
+        }
+      );
+      state.weekTransactions = payload.filter((transaction: ITransactionDB) => {
+        const today: number = new Date().getTime();
+        const transactionDate: number = new Date(transaction.date).getTime();
+        return Math.abs(today - transactionDate) < 1000 * 60 * 60 * 24 * 7;
+      });
     });
     builder.addCase(getUserTransactions.rejected, (state) => {
       state.transactions = [];
+      state.monthTransactions = [];
+      state.weekTransactions = [];
     });
     builder.addCase(getTransaction.fulfilled, (state, { payload }) => {
       state.currentTransaction = payload;
     });
     builder.addCase(getTransaction.rejected, (state) => {
       state.currentTransaction = null;
-    });
-    builder.addCase(getTransactionsForXDays.fulfilled, (state, { payload }) => {
-      state.transactions = payload;
-    });
-    builder.addCase(getTransactionsForXDays.rejected, (state, { payload }) => {
-      state.transactions = [];
     });
     builder.addCase(addTransaction.fulfilled, (state, { payload }) => {
       state.transactions.push(payload);

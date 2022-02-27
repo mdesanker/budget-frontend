@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { getTransactionsForXDays } from "../../../../store/slices/transactionSlice";
+import { useAppSelector } from "../../../../store/hooks";
 import { RootState } from "../../../../store/store";
 
 interface Props {
