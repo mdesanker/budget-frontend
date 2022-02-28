@@ -16,7 +16,7 @@ const AddTransactionForm = () => {
     merchant: "",
     description: "",
     type: "expense",
-    category: "personal",
+    category: "Personal",
     date: DateTime.now().toISODate(),
   });
 
@@ -131,6 +131,7 @@ const AddTransactionForm = () => {
           className="outline-none bg-transparent text-xl pb-1"
           value={category}
           onChange={formChangeHandler}
+          // defaultValue="Personal"
         >
           {categories.map((category) => {
             return (
