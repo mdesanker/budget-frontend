@@ -18,16 +18,22 @@ const CategoryDonut = () => {
     labels: categories,
     datasets: [
       {
-        label: "# of Votes",
+        label: "Expenses by Category",
         data: categories.map((category) =>
           categoryTotal(category, yearTransactions)
         ),
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
+          "#94a3b8",
+          "#fca5a5",
+          "#1e40af",
+          "#93c5fd",
+          "#0e7490",
+          "#86efac",
+          "#a21caf",
+          "#fde047",
+          "#6b21a8",
+          "#b91c1c",
+          "#155e75",
         ],
       },
     ],
