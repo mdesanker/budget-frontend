@@ -15,3 +15,13 @@ export const totalSpent = (transactions: ITransactionDB[]) => {
     return (spent - earned).toFixed(2);
   }
 };
+
+export const dayTransactionTotal = (
+  day: number,
+  transactions: ITransactionDB[]
+) => {
+  return transactions
+    .filter((transaction) => new Date(transaction.date).getDay() === day)
+    ?.map((transaction) => transaction.amount)
+    ?.reduce((a, b) => a + parseFloat(b), 0);
+};

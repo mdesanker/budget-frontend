@@ -7,7 +7,9 @@ import {
   Tooltip,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import faker from "@faker-js/faker";
+import { useAppSelector } from "../../../../store/hooks";
+import { RootState } from "../../../../store/store";
+import { dayTransactionTotal } from "../../../../utils/utilFunctions";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
@@ -34,18 +36,22 @@ const labels = [
   "Saturday",
 ];
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      backgroundColor: "#0891b2",
-    },
-  ],
-};
-
 const DailyChart = () => {
+  const { weekTransactions } = useAppSelector(
+    (state: RootState) => state.transactions
+  );
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Dataset 1",
+        data: labels.map((_, i) => dayTransactionTotal(i, weekTransactions)),
+        backgroundColor: "#0891b2",
+      },
+    ],
+  };
+
   return (
     <div className="relative w-9/10 max-w-2xl">
       <h2 className="text-center font-semibold text-xl">Daily Expenses</h2>
