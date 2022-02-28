@@ -5,6 +5,7 @@ import { useAppSelector } from "../../../../store/hooks";
 import { RootState } from "../../../../store/store";
 import { categoryTotal } from "../../../../utils/utilFunctions";
 import { categories } from "../../../../utils/transactionCategories";
+import { donutOptions } from "../../../../utils/chartOptions";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -28,24 +29,16 @@ const CategoryDonut = () => {
           "rgba(75, 192, 192, 0.2)",
           "rgba(153, 102, 255, 0.2)",
         ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-        ],
-        borderWidth: 2,
       },
     ],
   };
 
   return (
-    <div className="mb-16">
+    <div className="relative w-9/10 max-w-2xl">
       <h2 className="text-center font-semibold text-xl">
         Expenses by Category
       </h2>
-      <Doughnut data={data} />
+      <Doughnut options={donutOptions} data={data} />
     </div>
   );
 };

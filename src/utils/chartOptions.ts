@@ -89,3 +89,23 @@ export const barLineOptions = {
     },
   },
 };
+
+export const donutOptions = {
+  responsive: true,
+  aspectRatio: 1.2,
+  cutout: "40%",
+  radius: "100%",
+  plugins: {
+    legend: {
+      display: true,
+      position: "right" as const,
+      usePointStyle: true,
+      reverse: true,
+      labels: {
+        font: {
+          size: 14,
+        },
+      },
+    },
+  },
+};
