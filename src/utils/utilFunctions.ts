@@ -54,6 +54,16 @@ export const monthTrasanctionCount = (
   )?.length;
 };
 
+export const categoryTotal = (
+  category: string,
+  transactions: ITransactionDB[]
+) => {
+  return transactions
+    .filter((transaction) => transaction.category === category)
+    .map((transaction) => transaction.amount)
+    .reduce((a, b) => a + parseFloat(b), 0);
+};
+
 export const timespanTransactionFilter = (
   days: number,
   transactions: ITransactionDB[]
