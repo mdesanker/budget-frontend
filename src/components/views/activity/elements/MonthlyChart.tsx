@@ -58,6 +58,8 @@ export const data = {
 };
 
 const MonthlyChart = () => {
+  console.log(data.datasets[0].data);
+
   return (
     <div className="relative w-9/10 max-w-2xl">
       <h2 className="text-center font-semibold text-xl">Monthly Expenses</h2>

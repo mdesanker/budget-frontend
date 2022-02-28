@@ -134,8 +134,8 @@ const AddTransactionForm = () => {
         >
           {categories.map((category) => {
             return (
-              <option key={uuidv4()} value={category.value}>
-                {category.name}
+              <option key={uuidv4()} value={category}>
+                {category}
               </option>
             );
           })}
