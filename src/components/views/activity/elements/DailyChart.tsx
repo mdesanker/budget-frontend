@@ -9,12 +9,20 @@ import {
 import { Bar } from "react-chartjs-2";
 import { useAppSelector } from "../../../../store/hooks";
 import { RootState } from "../../../../store/store";
-import { dayTransactionTotal } from "../../../../utils/utilFunctions";
+import {
+  dayTransactionTotal,
+  dayTrasanctionCount,
+} from "../../../../utils/utilFunctions";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
 export const options = {
   responsive: true,
+  interaction: {
+    mode: "index" as const,
+    intersect: false,
+  },
+  stacked: false,
   plugins: {
     legend: {
       display: false,
@@ -22,6 +30,21 @@ export const options = {
     title: {
       display: true,
       text: "Weekly Expenses",
+    },
+  },
+  scales: {
+    y: {
+      type: "linear" as const,
+      display: true,
+      position: "left" as const,
+    },
+    y1: {
+      type: "linear" as const,
+      display: true,
+      position: "right" as const,
+      grid: {
+        drawOnChartArea: false,
+      },
     },
   },
 };
@@ -45,9 +68,16 @@ const DailyChart = () => {
     labels,
     datasets: [
       {
-        label: "Dataset 1",
+        label: "Transaction Amount",
         data: labels.map((_, i) => dayTransactionTotal(i, weekTransactions)),
         backgroundColor: "#0891b2",
+        yAxisID: "y",
+      },
+      {
+        label: "Number of Transactions",
+        data: labels.map((_, i) => dayTrasanctionCount(i, weekTransactions)),
+        backgroundColor: "#000",
+        yAxisID: "y1",
       },
     ],
   };
