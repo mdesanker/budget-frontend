@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { timespanTransactionFilter } from "../../utils/utilFunctions";
 import { timedAlert } from "./alertSlice";
 
 // TRANSACTION THUNKS
@@ -162,18 +163,8 @@ const transactionSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getUserTransactions.fulfilled, (state, { payload }) => {
       state.transactions = payload;
-      state.monthTransactions = payload.filter(
-        (transaction: ITransactionDB) => {
-          const today: number = new Date().getTime();
-          const transactionDate: number = new Date(transaction.date).getTime();
-          return Math.abs(today - transactionDate) < 1000 * 60 * 60 * 24 * 30;
-        }
-      );
-      state.weekTransactions = payload.filter((transaction: ITransactionDB) => {
-        const today: number = new Date().getTime();
-        const transactionDate: number = new Date(transaction.date).getTime();
-        return Math.abs(today - transactionDate) < 1000 * 60 * 60 * 24 * 7;
-      });
+      state.monthTransactions = timespanTransactionFilter(30, payload);
+      state.weekTransactions = timespanTransactionFilter(7, payload);
     });
     builder.addCase(getUserTransactions.rejected, (state) => {
       state.transactions = [];

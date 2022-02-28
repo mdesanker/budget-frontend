@@ -25,3 +25,14 @@ export const dayTransactionTotal = (
     ?.map((transaction) => transaction.amount)
     ?.reduce((a, b) => a + parseFloat(b), 0);
 };
+
+export const timespanTransactionFilter = (
+  days: number,
+  transactions: ITransactionDB[]
+) => {
+  return transactions.filter((transaction: ITransactionDB) => {
+    const today: number = new Date().getTime();
+    const transactionDate: number = new Date(transaction.date).getTime();
+    return Math.abs(today - transactionDate) < 1000 * 60 * 60 * 24 * days;
+  });
+};
