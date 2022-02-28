@@ -26,6 +26,16 @@ export const dayTransactionTotal = (
     ?.reduce((a, b) => a + parseFloat(b), 0);
 };
 
+export const monthTransactionTotal = (
+  month: number,
+  transactions: ITransactionDB[]
+) => {
+  return transactions
+    .filter((transaction) => new Date(transaction.date).getMonth() === month)
+    ?.map((transaction) => transaction.amount)
+    ?.reduce((a, b) => a + parseFloat(b), 0);
+};
+
 export const timespanTransactionFilter = (
   days: number,
   transactions: ITransactionDB[]

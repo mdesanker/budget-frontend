@@ -8,7 +8,9 @@ import {
   Tooltip,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import faker from "@faker-js/faker";
+import { useAppSelector } from "../../../../store/hooks";
+import { RootState } from "../../../../store/store";
+import { monthTransactionTotal } from "../../../../utils/utilFunctions";
 
 ChartJS.register(
   CategoryScale,
@@ -46,18 +48,22 @@ const labels = [
   "December",
 ];
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      backgroundColor: "#0891b2",
-    },
-  ],
-};
-
 const MonthlyChart = () => {
+  const { yearTransactions } = useAppSelector(
+    (state: RootState) => state.transactions
+  );
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Dataset 1",
+        data: labels.map((_, i) => monthTransactionTotal(i, yearTransactions)),
+        backgroundColor: "#0891b2",
+      },
+    ],
+  };
+
   return (
     <div className="relative w-9/10 max-w-2xl">
       <h2 className="text-center font-semibold text-xl">Monthly Expenses</h2>
