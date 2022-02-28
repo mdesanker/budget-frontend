@@ -34,7 +34,9 @@ export const options = {
   stacked: false,
   plugins: {
     legend: {
-      display: false,
+      display: true,
+      usePointStyle: true,
+      reverse: true,
     },
     title: {
       display: true,
@@ -46,6 +48,22 @@ export const options = {
       type: "linear" as const,
       display: true,
       position: "left" as const,
+      grid: {
+        drawBorder: true,
+        borderColor: "#0891b2",
+        borderWidth: 2,
+        tickColor: "#0891b2",
+        tickWidth: 2,
+      },
+      title: {
+        display: true,
+        text: "Amount Spent ($)",
+        color: "#0891b2",
+        font: {
+          size: 16,
+          weight: "bold",
+        },
+      },
     },
     y1: {
       type: "linear" as const,
@@ -53,6 +71,20 @@ export const options = {
       position: "right" as const,
       grid: {
         drawOnChartArea: false,
+        drawBorder: true,
+        borderColor: "#b91c1c",
+        borderWidth: 2,
+        tickColor: "#b91c1c",
+        tickWidth: 2,
+      },
+      title: {
+        display: true,
+        text: "Number of Transactions",
+        color: "#b91c1c",
+        font: {
+          size: 16,
+          weight: "bold",
+        },
       },
     },
   },
@@ -78,19 +110,19 @@ const DailyChart = () => {
     datasets: [
       {
         type: "line" as const,
-        label: "Transaction Amount",
-        data: labels.map((_, i) => dayTransactionTotal(i, weekTransactions)),
-        borderColor: "#0891b2",
-        borderWidth: 2,
-        fill: false,
-        yAxisID: "y",
+        label: "Number of Transactions",
+        data: labels.map((_, i) => dayTrasanctionCount(i, weekTransactions)),
+        borderColor: "#b91c1c",
+        borderWidth: 4,
+        fill: true,
+        yAxisID: "y1",
       },
       {
         type: "bar" as const,
-        label: "Number of Transactions",
-        data: labels.map((_, i) => dayTrasanctionCount(i, weekTransactions)),
-        backgroundColor: "#000",
-        yAxisID: "y1",
+        label: "Amount Spent",
+        data: labels.map((_, i) => dayTransactionTotal(i, weekTransactions)),
+        backgroundColor: "#0891b2",
+        yAxisID: "y",
       },
     ],
   };
