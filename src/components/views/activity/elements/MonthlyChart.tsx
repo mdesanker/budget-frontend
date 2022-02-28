@@ -7,10 +7,14 @@ import {
   LineElement,
   Tooltip,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import { Chart } from "react-chartjs-2";
 import { useAppSelector } from "../../../../store/hooks";
 import { RootState } from "../../../../store/store";
-import { monthTransactionTotal } from "../../../../utils/utilFunctions";
+import {
+  monthTransactionTotal,
+  monthTrasanctionCount,
+} from "../../../../utils/utilFunctions";
+import { barLineOptions } from "../../../../utils/chartOptions";
 
 ChartJS.register(
   CategoryScale,
@@ -57,9 +61,20 @@ const MonthlyChart = () => {
     labels,
     datasets: [
       {
-        label: "Dataset 1",
+        type: "line" as const,
+        label: "Transactions",
+        data: labels.map((_, i) => monthTrasanctionCount(i, yearTransactions)),
+        borderColor: "#b91c1c",
+        borderWidth: 4,
+        fill: true,
+        yAxisID: "y1",
+      },
+      {
+        type: "bar" as const,
+        label: "Amount",
         data: labels.map((_, i) => monthTransactionTotal(i, yearTransactions)),
         backgroundColor: "#0891b2",
+        yAxisID: "y",
       },
     ],
   };
@@ -67,7 +82,12 @@ const MonthlyChart = () => {
   return (
     <div className="relative w-9/10 max-w-2xl">
       <h2 className="text-center font-semibold text-xl">Monthly Expenses</h2>
-      <Line options={options} data={data} className="mb-16" />
+      <Chart
+        type="bar"
+        options={barLineOptions}
+        data={data}
+        className="mb-16"
+      />
     </div>
   );
 };
