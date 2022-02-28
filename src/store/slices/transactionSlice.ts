@@ -126,10 +126,7 @@ export interface ITransactionDB extends Transaction {
 
 interface TransactionState {
   transactions: ITransactionDB[];
-  // month: {
-  //   transactions: ITransactionDB[];
-  //   total: number;
-  // };
+  yearTransactions: ITransactionDB[];
   monthTransactions: ITransactionDB[];
   weekTransactions: ITransactionDB[];
   currentTransaction: ITransactionDB | null;
@@ -137,10 +134,7 @@ interface TransactionState {
 
 const initialState: TransactionState = {
   transactions: [],
-  // month: {
-  //   transactions: [],
-  //   total: 0,
-  // },
+  yearTransactions: [],
   monthTransactions: [],
   weekTransactions: [],
   currentTransaction: null,
@@ -152,6 +146,7 @@ const transactionSlice = createSlice({
   reducers: {
     clearAllTransactions: (state) => {
       state.transactions = [];
+      state.yearTransactions = [];
       state.monthTransactions = [];
       state.weekTransactions = [];
       state.currentTransaction = null;
@@ -163,11 +158,13 @@ const transactionSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getUserTransactions.fulfilled, (state, { payload }) => {
       state.transactions = payload;
+      state.yearTransactions = timespanTransactionFilter(365, payload);
       state.monthTransactions = timespanTransactionFilter(30, payload);
       state.weekTransactions = timespanTransactionFilter(7, payload);
     });
     builder.addCase(getUserTransactions.rejected, (state) => {
       state.transactions = [];
+      state.yearTransactions = [];
       state.monthTransactions = [];
       state.weekTransactions = [];
     });
@@ -190,6 +187,15 @@ const transactionSlice = createSlice({
     });
     builder.addCase(deleteTransaction.fulfilled, (state, { payload }) => {
       state.transactions = state.transactions.filter(
+        (transaction) => transaction._id !== payload
+      );
+      state.yearTransactions = state.yearTransactions.filter(
+        (transaction) => transaction._id !== payload
+      );
+      state.monthTransactions = state.monthTransactions.filter(
+        (transaction) => transaction._id !== payload
+      );
+      state.weekTransactions = state.weekTransactions.filter(
         (transaction) => transaction._id !== payload
       );
     });
