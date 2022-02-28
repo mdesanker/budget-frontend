@@ -4,9 +4,11 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
+  PointElement,
+  LineElement,
   Tooltip,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import { Chart } from "react-chartjs-2";
 import { useAppSelector } from "../../../../store/hooks";
 import { RootState } from "../../../../store/store";
 import {
@@ -14,7 +16,14 @@ import {
   dayTrasanctionCount,
 } from "../../../../utils/utilFunctions";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  PointElement,
+  LineElement,
+  Tooltip
+);
 
 export const options = {
   responsive: true,
@@ -68,12 +77,16 @@ const DailyChart = () => {
     labels,
     datasets: [
       {
+        type: "line" as const,
         label: "Transaction Amount",
         data: labels.map((_, i) => dayTransactionTotal(i, weekTransactions)),
-        backgroundColor: "#0891b2",
+        borderColor: "#0891b2",
+        borderWidth: 2,
+        fill: false,
         yAxisID: "y",
       },
       {
+        type: "bar" as const,
         label: "Number of Transactions",
         data: labels.map((_, i) => dayTrasanctionCount(i, weekTransactions)),
         backgroundColor: "#000",
@@ -85,7 +98,7 @@ const DailyChart = () => {
   return (
     <div className="relative w-9/10 max-w-2xl">
       <h2 className="text-center font-semibold text-xl">Daily Expenses</h2>
-      <Bar options={options} data={data} className="mb-16" />
+      <Chart type="bar" options={options} data={data} className="mb-16" />
     </div>
   );
 };
