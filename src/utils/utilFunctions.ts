@@ -50,7 +50,7 @@ export const monthTrasanctionCount = (
   transactions: ITransactionDB[]
 ) => {
   return transactions.filter(
-    (transaction) => new Date(transaction.date).getDay() === month
+    (transaction) => new Date(transaction.date).getMonth() === month
   )?.length;
 };
 
