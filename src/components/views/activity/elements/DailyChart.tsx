@@ -35,19 +35,41 @@ export const options = {
   plugins: {
     legend: {
       display: true,
+      position: "bottom" as const,
       usePointStyle: true,
       reverse: true,
-    },
-    title: {
-      display: true,
-      text: "Weekly Expenses",
+      labels: {
+        font: {
+          size: 14,
+        },
+      },
     },
   },
   scales: {
+    x: {
+      ticks: {
+        font: {
+          size: 14,
+          weight: "bold",
+        },
+      },
+      grid: {
+        drawBorder: true,
+        borderColor: "#94a3b8",
+        borderWidth: 3,
+      },
+    },
     y: {
       type: "linear" as const,
       display: true,
       position: "left" as const,
+      ticks: {
+        color: "#0891b2",
+        font: {
+          size: 14,
+          weight: "bold",
+        },
+      },
       grid: {
         drawBorder: true,
         borderColor: "#0891b2",
@@ -57,8 +79,7 @@ export const options = {
       },
       title: {
         display: true,
-        text: "Amount Spent ($)",
-        color: "#0891b2",
+        text: "Amount",
         font: {
           size: 16,
           weight: "bold",
@@ -69,6 +90,13 @@ export const options = {
       type: "linear" as const,
       display: true,
       position: "right" as const,
+      ticks: {
+        color: "#b91c1c",
+        font: {
+          size: 14,
+          weight: "bold",
+        },
+      },
       grid: {
         drawOnChartArea: false,
         drawBorder: true,
@@ -79,8 +107,7 @@ export const options = {
       },
       title: {
         display: true,
-        text: "Number of Transactions",
-        color: "#b91c1c",
+        text: "Transactions",
         font: {
           size: 16,
           weight: "bold",
@@ -90,15 +117,7 @@ export const options = {
   },
 };
 
-const labels = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+const labels = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
 
 const DailyChart = () => {
   const { weekTransactions } = useAppSelector(
@@ -110,7 +129,7 @@ const DailyChart = () => {
     datasets: [
       {
         type: "line" as const,
-        label: "Number of Transactions",
+        label: "Transactions",
         data: labels.map((_, i) => dayTrasanctionCount(i, weekTransactions)),
         borderColor: "#b91c1c",
         borderWidth: 4,
@@ -119,7 +138,7 @@ const DailyChart = () => {
       },
       {
         type: "bar" as const,
-        label: "Amount Spent",
+        label: "Amount",
         data: labels.map((_, i) => dayTransactionTotal(i, weekTransactions)),
         backgroundColor: "#0891b2",
         yAxisID: "y",
