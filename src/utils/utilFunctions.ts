@@ -5,12 +5,12 @@ export const totalSpent = (transactions: ITransactionDB[]) => {
     const spent: any = transactions
       .filter((transaction) => transaction.type === "expense")
       .map((transaction) => transaction.amount)
-      .reduce((a, b) => a + b);
+      .reduce((a, b) => a + parseFloat(b), 0);
 
     const earned: any = transactions
       .filter((transaction) => transaction.type === "earning")
       .map((transaction) => transaction.amount)
-      .reduce((a, b) => a + b);
+      .reduce((a, b) => a + parseFloat(b), 0);
 
     return (spent - earned).toFixed(2);
   }
