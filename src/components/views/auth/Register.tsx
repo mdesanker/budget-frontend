@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { timedAlert } from "../../../store/slices/alertSlice";
 import { registerUser } from "../../../store/slices/userSlice";
+import AlertDisplay from "../../elements/AlertDisplay";
 import "./Auth.css";
 
 const Register = () => {
@@ -53,7 +54,8 @@ const Register = () => {
   }, [isAuthenticated]);
 
   return (
-    <main className="main bg-stripe">
+    <main className="absolute main bg-stripe">
+      <AlertDisplay />
       <div className="card">
         <div className="card-header">
           <h1 className="text-4xl font-semibold pb-2">Sign up</h1>
