@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { loginUser } from "../../../store/slices/userSlice";
+import ErrorDisplay from "../../elements/ErrorDisplay";
 import "./Auth.css";
 
 const Login = () => {
@@ -41,7 +42,8 @@ const Login = () => {
   }, [isAuthenticated]);
 
   return (
-    <main className="main bg-stripe">
+    <main className="main bg-stripe relative">
+      <ErrorDisplay />
       <div className="card">
         <div className="card-header">
           <h1 className="text-4xl font-semibold pb-2">Log in</h1>
