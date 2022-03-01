@@ -57,7 +57,8 @@ const DailyChart = () => {
 
   return (
     <div className="relative w-9/10 max-w-3xl mb-8">
-      <h2 className="text-center font-semibold text-xl">Daily Expenses</h2>
+      <h2 className="text-center font-semibold text-xl">Expenses by Day</h2>
+      <p className="text-center text-gray-500">(Week to date)</p>
       <Chart type="bar" options={barLineOptions} data={data} />
     </div>
   );

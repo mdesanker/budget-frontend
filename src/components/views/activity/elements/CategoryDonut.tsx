@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { useAppSelector } from "../../../../store/hooks";
@@ -17,18 +17,20 @@ const CategoryDonut = () => {
     setTimePeriod((e.target as HTMLElement).id);
   };
 
-  const { yearTransactions } = useAppSelector(
-    (state: RootState) => state.transactions
-  );
+  const { weekTransactions, monthTransactions, yearTransactions } =
+    useAppSelector((state: RootState) => state.transactions);
+
+  let chartData = yearTransactions;
+  if (timePeriod === "week") chartData = weekTransactions;
+  if (timePeriod === "month") chartData = monthTransactions;
+  if (timePeriod === "year") chartData = yearTransactions;
 
   const data = {
     labels: categories,
     datasets: [
       {
         label: "Expenses by Category",
-        data: categories.map((category) =>
-          categoryTotal(category, yearTransactions)
-        ),
+        data: categories.map((category) => categoryTotal(category, chartData)),
         backgroundColor: [
           "#94a3b8",
           "#fca5a5",
@@ -49,7 +51,7 @@ const CategoryDonut = () => {
   return (
     <div className="relative w-9/10 max-w-xl mb-8">
       <h2 className="text-center font-semibold text-xl">
-        Annual Expenses by Category
+        Spending by Category
       </h2>
       <div className="flex justify-center items-center font-medium gap-2 pt-4">
         <button
