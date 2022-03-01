@@ -48,18 +48,10 @@ const Account = () => {
         {showForm && <DetailForm closeForm={showFormHandler} />}
       </div>
       <ul className="w-full flex flex-col items-center pt-4">
-        <li>
-          <button className="account-btn" onClick={logoutHandler}>
-            <div>
-              <ImExit className="h-6 w-6" />
-            </div>
-            Log out
-          </button>
-        </li>
         {!showDelete && (
           <li>
             <button
-              className="account-btn text-red-600"
+              className="flex justify-center px-4 font-medium text-lg items-center w-[200px] h-10 gap-4 duration-150  my-2 text-red-600 hover:bg-red-600 hover:text-white"
               onClick={showDeleteHandler}
             >
               <div>
