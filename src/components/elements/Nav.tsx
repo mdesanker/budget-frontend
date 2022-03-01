@@ -1,12 +1,23 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./Nav.css";
 import { MdDashboard } from "react-icons/md";
-import { BsCashCoin } from "react-icons/bs";
+import { ImExit } from "react-icons/im";
 import { VscGraphLine } from "react-icons/vsc";
 import { FaUserCircle } from "react-icons/fa";
+import { useAppDispatch } from "../../store/hooks";
+import { logout } from "../../store/slices/userSlice";
+import { clearAllTransactions } from "../../store/slices/transactionSlice";
 
 const Nav = () => {
   const location = useLocation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    dispatch(clearAllTransactions());
+    navigate("/");
+  };
 
   return (
     <nav className="nav-bar">
@@ -20,17 +31,6 @@ const Nav = () => {
           >
             <MdDashboard className="nav-icon" />
             <p className="nav-text">Dashboard</p>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/transactions"
-            className={`flex flex-col gap-1 px-2 justify-center items-center text-gray-500 ${
-              location.pathname === "/transactions" ? "text-blue-500" : ""
-            }`}
-          >
-            <BsCashCoin className="nav-icon" />
-            <p className="nav-text">Transactions</p>
           </NavLink>
         </li>
         <li>
@@ -54,6 +54,15 @@ const Nav = () => {
             <FaUserCircle className="nav-icon" />
             <p className="nav-text">Account</p>
           </NavLink>
+        </li>
+        <li>
+          <button
+            onClick={logoutHandler}
+            className={`flex flex-col gap-1 px-2 justify-center items-center text-gray-500 `}
+          >
+            <ImExit className="nav-icon" />
+            <p className="nav-text">Logout</p>
+          </button>
         </li>
       </ul>
     </nav>
