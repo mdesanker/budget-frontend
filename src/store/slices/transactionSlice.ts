@@ -80,6 +80,8 @@ export const editTransaction = createAsyncThunk<
     try {
       const res = await axios.put(`/transaction/edit/${id}`, body, config);
 
+      dispatch(getUserTransactions());
+
       return res.data;
     } catch (err: any) {
       const errors = err.response.data.errors;
@@ -96,6 +98,8 @@ export const deleteTransaction = createAsyncThunk<string, any>(
   async (id, { dispatch, rejectWithValue }) => {
     try {
       await axios.delete(`/transaction/${id}`);
+
+      dispatch(getUserTransactions());
 
       return id;
     } catch (err: any) {
@@ -176,28 +180,6 @@ const transactionSlice = createSlice({
     });
     builder.addCase(addTransaction.fulfilled, (state, { payload }) => {
       state.transactions.push(payload);
-    });
-    builder.addCase(editTransaction.fulfilled, (state, { payload }) => {
-      // Get index of editted transaction
-      const index = state.transactions.findIndex(
-        (transaction) => transaction._id === payload._id
-      );
-      // Edit transaction in state
-      state.transactions[index] = payload;
-    });
-    builder.addCase(deleteTransaction.fulfilled, (state, { payload }) => {
-      state.transactions = state.transactions.filter(
-        (transaction) => transaction._id !== payload
-      );
-      state.yearTransactions = state.yearTransactions.filter(
-        (transaction) => transaction._id !== payload
-      );
-      state.monthTransactions = state.monthTransactions.filter(
-        (transaction) => transaction._id !== payload
-      );
-      state.weekTransactions = state.weekTransactions.filter(
-        (transaction) => transaction._id !== payload
-      );
     });
   },
 });
