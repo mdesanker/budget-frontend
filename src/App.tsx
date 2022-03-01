@@ -9,56 +9,59 @@ import AddTransaction from "./components/views/transactionForm/AddTransaction";
 import EditTransaction from "./components/views/transactionForm/EditTransaction";
 import Account from "./components/views/account/Account";
 import Activity from "./components/views/activity/Activity";
+import ScrollToTop from "./utils/scrollToTop";
 
 axios.defaults.baseURL = "http://localhost:5000";
 
 const App = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route
-          path="/dashboard"
-          element={
-            // <ProtectedRoute>
-            <Dashboard />
-            // </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/transaction"
-          element={
-            // <ProtectedRoute>
-            <AddTransaction />
-            // </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/transaction/:id/edit"
-          element={
-            // <ProtectedRoute>
-            <EditTransaction />
-            // </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/account"
-          element={
-            // <ProtectedRoute>
-            <Account />
-            // </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/activity"
-          element={
-            // <ProtectedRoute>
-            <Activity />
-            // </ProtectedRoute>
-          }
-        />
-      </Routes>
+      <ScrollToTop>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/dashboard"
+            element={
+              // <ProtectedRoute>
+              <Dashboard />
+              // </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/transaction"
+            element={
+              // <ProtectedRoute>
+              <AddTransaction />
+              // </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/transaction/:id/edit"
+            element={
+              // <ProtectedRoute>
+              <EditTransaction />
+              // </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              // <ProtectedRoute>
+              <Account />
+              // </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/activity"
+            element={
+              // <ProtectedRoute>
+              <Activity />
+              // </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </ScrollToTop>
     </>
   );
 };
