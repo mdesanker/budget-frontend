@@ -5,8 +5,10 @@ import MonthlyChart from "./elements/MonthlyChart";
 
 const Activity = () => {
   return (
-    <main className="flex flex-col items-center mb-16">
-      <h1 className="font-bold text-2xl p-2 mb-4">Activity</h1>
+    <main className="flex flex-col items-center mb-16 bg-white">
+      <h1 className="w-full text-center font-bold text-2xl mb-8 p-4 border-b border-gray-200">
+        Activity Tracker
+      </h1>
       <DailyChart />
       <MonthlyChart />
       <CategoryDonut />

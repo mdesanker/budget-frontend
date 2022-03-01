@@ -1,5 +1,5 @@
 .account-card {
-  @apply flex flex-col items-center bg-white p-6 shadow-sm w-full sm:w-[400px];
+  @apply flex flex-col items-center bg-white p-6 shadow-md w-full sm:w-[400px];
 }
 
 .account-header {

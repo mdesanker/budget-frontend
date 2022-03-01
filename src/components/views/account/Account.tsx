@@ -33,7 +33,7 @@ const Account = () => {
   };
 
   return (
-    <main className="flex flex-col justify-start items-center pt-12 bg-gray-100 min-h-screen pb-16">
+    <main className="flex flex-col justify-start items-center pt-12 bg-gray-200 min-h-screen pb-16">
       <div className="account-card">
         <div className="account-header relative">
           <h1>Your Account</h1>

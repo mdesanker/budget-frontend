@@ -40,9 +40,9 @@ const CategoryDonut = () => {
   };
 
   return (
-    <div className="relative w-9/10 max-w-2xl">
+    <div className="relative w-9/10 max-w-xl mb-8">
       <h2 className="text-center font-semibold text-xl">
-        Expenses by Category
+        Annual Expenses by Category
       </h2>
       <Doughnut options={donutOptions} data={data} />
     </div>

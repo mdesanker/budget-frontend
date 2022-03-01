@@ -48,7 +48,7 @@ const EditTransactionForm = ({ id }: Props) => {
     merchant: "",
     description: "",
     type: "expense",
-    category: "personal",
+    category: "Personal",
     date: DateTime.now().toISODate(),
   });
 
