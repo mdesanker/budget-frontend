@@ -1,6 +1,6 @@
 # Budget App Frontend
 
-Frontend for the budget tracking app.
+A tracking app for expenses.
 
 The [Budget App](https://mdesanker.github.io/budget-frontend)
 
@@ -17,6 +17,8 @@ The [Budget App](https://mdesanker.github.io/budget-frontend)
 - [Links](#Links)
 
 ## Description
+
+This repository is the React frontend for the [Budget App](https://mdesanker.github.io/budget-frontend).
 
 This expense tracking app allows users to track expenses with amount, who money was sent to or received from, a description of what the transaction was for, a transaction category, and date of the transaction. The dashboard displays total expenses, and a list of individual transactions over a 7 or 30 day period.
 
@@ -58,20 +60,17 @@ This app was built with the MERN stack in TypeScript.
 - JWT Authentication
 - MongoDB/Mongoose
 - supertest
+- MongoMemoryServer
 
-## Lessons learned
+## Frontend Challenges
 
 - TypeScript took some getting used to (ongoing), but the ability to type check inputs is very useful
 
-- Tailwind CSS is a lot of fun to use. Took a lot of referencing the documentation to learn the class names initially.
-
-- ChartJS was a very convenient package for creating charts in React
-
-## Challenges
-
-- React testing library - this will take more practice from me. Will implement in smaller projects to increase familiarity
+- React testing library - this will take more practice from me. Will implement in smaller projects to increase familiarity.
 
 - Transaction dates - transactions are saved as the day before the selected date and I have not figured out how to fix yet. I believe this is because the date is saved without the timezone, so when the date is displayed its read as if the time zone is UTC, which means it shows as the day before for ET.
+
+- Filtering transaction data - I used a single API call to fetch user transactions from the DB. Then I filtered the transactions into week, month, and year lists in redux extrareducer functions so that they could be used in the dashboard and activity views. ChartJS made it relatively simple to use a function to map the days of the week or months of the year to filter the selected transactions. This is approach would be a lot more resource intensive in a large app with a massive amount of transactions. In that case, it would be better to use API endpoints to query the database for specific transactions.
 
 ## Links
 
