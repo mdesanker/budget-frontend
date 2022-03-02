@@ -3,16 +3,54 @@ import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
 import { timedAlert } from "./alertSlice";
 
-// USER THUNKS
-interface User {
-  firstName?: string;
-  lastName?: string;
+interface loginAttributes {
   email: string;
   password: string;
-  passwordConfirm?: string;
 }
 
-export const registerUser = createAsyncThunk<string, User>(
+interface registerAttributes {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+}
+
+interface updateAttributes {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+interface User {
+  _id: string;
+  name: {
+    firstName: string;
+    lastName: string;
+  };
+  email: string;
+  password: string;
+  date: string;
+  __v: number;
+}
+
+interface UserState {
+  token: string | null;
+  user: {
+    _id: string;
+    name: {
+      firstName: string;
+      lastName: string;
+    };
+    email: string;
+    date: string;
+    __v: number;
+  } | null;
+  isAuthenticated: Boolean;
+}
+
+// USER THUNKS
+export const registerUser = createAsyncThunk<string, registerAttributes>(
   "/user/register",
   async (registration, { rejectWithValue, dispatch }) => {
     const config = {
@@ -37,7 +75,7 @@ export const registerUser = createAsyncThunk<string, User>(
   }
 );
 
-export const loginUser = createAsyncThunk<string, User>(
+export const loginUser = createAsyncThunk<string, loginAttributes>(
   "/user/login",
   async (login, { rejectWithValue, dispatch }) => {
     const config = {
@@ -62,7 +100,7 @@ export const loginUser = createAsyncThunk<string, User>(
   }
 );
 
-export const loadUser = createAsyncThunk(
+export const loadUser = createAsyncThunk<User>(
   "user/load",
   async (_, { dispatch, rejectWithValue }) => {
     if (localStorage.token) {
@@ -83,7 +121,7 @@ export const loadUser = createAsyncThunk(
   }
 );
 
-export const updateUser = createAsyncThunk<any, any>(
+export const updateUser = createAsyncThunk<User, updateAttributes>(
   "user/update",
   async (user, { dispatch, rejectWithValue }) => {
     const config = {
@@ -126,21 +164,6 @@ export const deleteUser = createAsyncThunk<string, string>(
 );
 
 // USER SLICE
-interface UserState {
-  token: string | null;
-  user: {
-    _id: string;
-    name: {
-      firstName: string;
-      lastName: string;
-    };
-    email: string;
-    date: string;
-    __v: number;
-  } | null;
-  isAuthenticated: Boolean;
-}
-
 const initialState: UserState = {
   token: null,
   user: null,
