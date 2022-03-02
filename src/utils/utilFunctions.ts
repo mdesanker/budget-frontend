@@ -1,6 +1,6 @@
-import { ITransactionDB } from "../store/slices/transactionSlice";
+import { ITransaction } from "../store/slices/transactionSlice";
 
-export const totalSpent = (transactions: ITransactionDB[]) => {
+export const totalSpent = (transactions: ITransaction[]) => {
   if (transactions.length > 0) {
     const spent: any = transactions
       .filter((transaction) => transaction.type === "expense")
@@ -18,7 +18,7 @@ export const totalSpent = (transactions: ITransactionDB[]) => {
 
 export const dayTransactionTotal = (
   day: number,
-  transactions: ITransactionDB[]
+  transactions: ITransaction[]
 ) => {
   return transactions
     .filter((transaction) => new Date(transaction.date).getDay() === day)
@@ -28,7 +28,7 @@ export const dayTransactionTotal = (
 
 export const dayTrasanctionCount = (
   day: number,
-  transactions: ITransactionDB[]
+  transactions: ITransaction[]
 ) => {
   return transactions.filter(
     (transaction) => new Date(transaction.date).getDay() === day
@@ -37,7 +37,7 @@ export const dayTrasanctionCount = (
 
 export const monthTransactionTotal = (
   month: number,
-  transactions: ITransactionDB[]
+  transactions: ITransaction[]
 ) => {
   return transactions
     .filter((transaction) => new Date(transaction.date).getMonth() === month)
@@ -47,7 +47,7 @@ export const monthTransactionTotal = (
 
 export const monthTrasanctionCount = (
   month: number,
-  transactions: ITransactionDB[]
+  transactions: ITransaction[]
 ) => {
   return transactions.filter(
     (transaction) => new Date(transaction.date).getMonth() === month
@@ -56,7 +56,7 @@ export const monthTrasanctionCount = (
 
 export const categoryTotal = (
   category: string,
-  transactions: ITransactionDB[]
+  transactions: ITransaction[]
 ) => {
   return transactions
     .filter((transaction) => transaction.category === category)
@@ -66,9 +66,9 @@ export const categoryTotal = (
 
 export const timespanTransactionFilter = (
   days: number,
-  transactions: ITransactionDB[]
+  transactions: ITransaction[]
 ) => {
-  return transactions.filter((transaction: ITransactionDB) => {
+  return transactions.filter((transaction: ITransaction) => {
     const today: number = new Date().getTime();
     const transactionDate: number = new Date(transaction.date).getTime();
     return Math.abs(today - transactionDate) < 1000 * 60 * 60 * 24 * days;

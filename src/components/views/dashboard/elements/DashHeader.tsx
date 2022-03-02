@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../../../store/hooks";
-import { ITransactionDB } from "../../../../store/slices/transactionSlice";
+import { ITransaction } from "../../../../store/slices/transactionSlice";
 import { RootState } from "../../../../store/store";
 import { totalSpent } from "../../../../utils/utilFunctions";
 
@@ -17,7 +17,7 @@ const DashHeader = ({ timespan, setTimespan }: Props) => {
     (state: RootState) => state.transactions
   );
 
-  let selected: ITransactionDB[] = [];
+  let selected: ITransaction[] = [];
 
   if (timespan === 30) {
     selected = monthTransactions;

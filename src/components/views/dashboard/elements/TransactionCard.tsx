@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../../../store/hooks";
 import {
   deleteTransaction,
-  ITransactionDB,
+  ITransaction,
 } from "../../../../store/slices/transactionSlice";
 
 interface TransactionProps {
-  transaction: ITransactionDB;
+  transaction: ITransaction;
 }
 
 const TransactionCard = ({ transaction }: TransactionProps) => {

@@ -65,7 +65,7 @@ export const addTransaction = createAsyncThunk<ITransaction, SubTransaction>(
 
 export const editTransaction = createAsyncThunk<
   ITransaction,
-  { id: string; transaction: ITransaction }
+  { id: string; transaction: SubTransaction }
 >(
   "transaction/edit",
   async ({ id, transaction }, { dispatch, rejectWithValue }) => {
