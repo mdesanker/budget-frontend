@@ -4,7 +4,7 @@ import { timespanTransactionFilter } from "../../utils/utilFunctions";
 import { timedAlert } from "./alertSlice";
 
 // TRANSACTION THUNKS
-export const getUserTransactions = createAsyncThunk(
+export const getUserTransactions = createAsyncThunk<ITransaction[]>(
   "transactions/getAllUser",
   async (_, { dispatch, rejectWithValue }) => {
     try {
@@ -21,7 +21,7 @@ export const getUserTransactions = createAsyncThunk(
   }
 );
 
-export const getTransaction = createAsyncThunk<any, string>(
+export const getTransaction = createAsyncThunk<ITransaction, string>(
   "transaction/get",
   async (id, { dispatch, rejectWithValue }) => {
     try {
@@ -38,7 +38,7 @@ export const getTransaction = createAsyncThunk<any, string>(
   }
 );
 
-export const addTransaction = createAsyncThunk<any, any>(
+export const addTransaction = createAsyncThunk<ITransaction, SubTransaction>(
   "transaction/add",
   async (transaction, { dispatch, rejectWithValue }) => {
     const config = {
@@ -64,8 +64,8 @@ export const addTransaction = createAsyncThunk<any, any>(
 );
 
 export const editTransaction = createAsyncThunk<
-  any,
-  { id: string; transaction: any }
+  ITransaction,
+  { id: string; transaction: ITransaction }
 >(
   "transaction/edit",
   async ({ id, transaction }, { dispatch, rejectWithValue }) => {
@@ -113,7 +113,7 @@ export const deleteTransaction = createAsyncThunk<string, any>(
 );
 
 // TRANSACTION SLICE
-interface Transaction {
+interface SubTransaction {
   description: string;
   merchant: string;
   amount: string;
@@ -122,18 +122,18 @@ interface Transaction {
   date: string;
 }
 
-export interface ITransactionDB extends Transaction {
+export interface ITransaction extends SubTransaction {
   _id: string;
   user: string;
   __v0: number;
 }
 
 interface TransactionState {
-  transactions: ITransactionDB[];
-  yearTransactions: ITransactionDB[];
-  monthTransactions: ITransactionDB[];
-  weekTransactions: ITransactionDB[];
-  currentTransaction: ITransactionDB | null;
+  transactions: ITransaction[];
+  yearTransactions: ITransaction[];
+  monthTransactions: ITransaction[];
+  weekTransactions: ITransaction[];
+  currentTransaction: ITransaction | null;
 }
 
 const initialState: TransactionState = {
