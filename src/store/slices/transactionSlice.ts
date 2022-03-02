@@ -1,21 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { timespanTransactionFilter } from "../../utils/utilFunctions";
-import { timedAlert } from "./alertSlice";
 
 // TRANSACTION THUNKS
 export const getUserTransactions = createAsyncThunk<ITransaction[]>(
   "transactions/getAllUser",
-  async (_, { dispatch, rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
       const res = await axios.get("/transaction/user");
 
       return res.data;
     } catch (err: any) {
-      const errors = err.response.data.errors;
-      for (let error of errors) {
-        dispatch(timedAlert({ ...error, type: "danger" }));
-      }
       return rejectWithValue(err.response.data);
     }
   }
@@ -29,10 +24,6 @@ export const getTransaction = createAsyncThunk<ITransaction, string>(
 
       return res.data;
     } catch (err: any) {
-      const errors = err.response.data.errors;
-      for (let error of errors) {
-        dispatch(timedAlert({ ...error, type: "danger" }));
-      }
       rejectWithValue(err.response.data);
     }
   }
@@ -54,10 +45,6 @@ export const addTransaction = createAsyncThunk<ITransaction, SubTransaction>(
 
       return res.data;
     } catch (err: any) {
-      const errors = err.response.data.errors;
-      for (let error of errors) {
-        dispatch(timedAlert({ ...error, type: "danger" }));
-      }
       return rejectWithValue(err.response.data);
     }
   }
@@ -84,10 +71,6 @@ export const editTransaction = createAsyncThunk<
 
       return res.data;
     } catch (err: any) {
-      const errors = err.response.data.errors;
-      for (let error of errors) {
-        dispatch(timedAlert({ ...error, type: "danger" }));
-      }
       rejectWithValue(err.response.data);
     }
   }
@@ -103,10 +86,6 @@ export const deleteTransaction = createAsyncThunk<string, any>(
 
       return id;
     } catch (err: any) {
-      const errors = err.response.data.errors;
-      for (let error of errors) {
-        dispatch(timedAlert({ ...error, type: "danger" }));
-      }
       rejectWithValue(err.response.data);
     }
   }
