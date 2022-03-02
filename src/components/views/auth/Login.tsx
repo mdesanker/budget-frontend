@@ -62,6 +62,7 @@ const Login = () => {
               id="email"
               value={email}
               placeholder=" "
+              required
               className="input"
               onChange={formChangeHandler}
             />
@@ -76,6 +77,7 @@ const Login = () => {
               id="password"
               value={password}
               placeholder=" "
+              required
               className="input"
               onChange={formChangeHandler}
             />

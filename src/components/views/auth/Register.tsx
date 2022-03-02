@@ -74,6 +74,7 @@ const Register = () => {
               id="firstName"
               value={firstName}
               placeholder=" "
+              required
               className="input"
               onChange={formChangeHandler}
             />
@@ -88,6 +89,7 @@ const Register = () => {
               id="lastName"
               value={lastName}
               placeholder=" "
+              required
               className="input"
               onChange={formChangeHandler}
             />
@@ -102,6 +104,7 @@ const Register = () => {
               id="email"
               value={email}
               placeholder=" "
+              required
               className="input"
               onChange={formChangeHandler}
             />
@@ -116,6 +119,7 @@ const Register = () => {
               id="password"
               value={password}
               placeholder=" "
+              required
               className="input"
               onChange={formChangeHandler}
             />
@@ -130,6 +134,7 @@ const Register = () => {
               id="passwordConfirm"
               value={passwordConfirm}
               placeholder=" "
+              required
               className="input"
               onChange={formChangeHandler}
             />
