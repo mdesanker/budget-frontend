@@ -37,13 +37,6 @@ const Register = () => {
     } else {
       console.log(formData);
       dispatch(registerUser(formData));
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        passwordConfirm: "",
-      });
     }
   };
 
