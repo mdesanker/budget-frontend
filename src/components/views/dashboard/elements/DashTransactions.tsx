@@ -35,7 +35,7 @@ const DashTransactions = ({ timespan }: Props) => {
       <div className="flex flex-col">
         {selected.length === 0 && (
           <p className="py-2 text-center text-gray-500">
-            No recent transactions
+            No transactions for selected period
           </p>
         )}
         {selected &&

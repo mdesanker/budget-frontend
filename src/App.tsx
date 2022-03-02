@@ -23,41 +23,41 @@ const App = () => {
           <Route
             path="/dashboard"
             element={
-              // <ProtectedRoute>
-              <Dashboard />
-              // </ProtectedRoute>
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
             }
           />
           <Route
             path="/transaction"
             element={
-              // <ProtectedRoute>
-              <AddTransaction />
-              // </ProtectedRoute>
+              <ProtectedRoute>
+                <AddTransaction />
+              </ProtectedRoute>
             }
           />
           <Route
             path="/transaction/:id/edit"
             element={
-              // <ProtectedRoute>
-              <EditTransaction />
-              // </ProtectedRoute>
+              <ProtectedRoute>
+                <EditTransaction />
+              </ProtectedRoute>
             }
           />
           <Route
             path="/account"
             element={
-              // <ProtectedRoute>
-              <Account />
-              // </ProtectedRoute>
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
             }
           />
           <Route
             path="/activity"
             element={
-              // <ProtectedRoute>
-              <Activity />
-              // </ProtectedRoute>
+              <ProtectedRoute>
+                <Activity />
+              </ProtectedRoute>
             }
           />
         </Routes>

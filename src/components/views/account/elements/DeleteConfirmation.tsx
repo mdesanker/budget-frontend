@@ -13,7 +13,7 @@ const DeleteConfirmation = ({ cancelDelete }: Props) => {
   const { user } = useAppSelector((state) => state.user);
 
   const deleteAccountHandler = () => {
-    if (user) dispatch(deleteUser(user._id));
+    dispatch(deleteUser(user?._id!));
     navigate("/");
   };
 
