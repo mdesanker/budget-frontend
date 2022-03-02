@@ -111,6 +111,7 @@ const EditTransactionForm = ({ id }: Props) => {
             id="amount"
             name="amount"
             value={amount}
+            required
             onChange={formChangeHandler}
             step={0.01}
             placeholder="0"
@@ -130,6 +131,7 @@ const EditTransactionForm = ({ id }: Props) => {
           id="merchant"
           name="merchant"
           value={merchant}
+          required
           onChange={formChangeHandler}
           className="outline-none text-xl w-full pb-1"
         />
@@ -146,6 +148,7 @@ const EditTransactionForm = ({ id }: Props) => {
           id="description"
           name="description"
           value={description}
+          required
           onChange={formChangeHandler}
           className="outline-none text-xl w-full pb-1"
         />
@@ -162,6 +165,7 @@ const EditTransactionForm = ({ id }: Props) => {
           id="category"
           className="outline-none bg-transparent text-xl pb-1"
           value={category}
+          required
           onChange={formChangeHandler}
         >
           {categories.map((category) => {
@@ -185,6 +189,7 @@ const EditTransactionForm = ({ id }: Props) => {
           id="date"
           name="date"
           value={date}
+          required
           onChange={formChangeHandler}
           className="outline-none text-xl w-full pb-1"
         />
