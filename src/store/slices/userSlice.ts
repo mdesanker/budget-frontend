@@ -62,7 +62,7 @@ export const registerUser = createAsyncThunk<string, registerAttributes>(
     const body = JSON.stringify(registration);
 
     try {
-      const res = await axios.post(`auth/register`, body, config);
+      const res = await axios.post(`/auth/register`, body, config);
 
       return res.data.token;
     } catch (err: any) {
@@ -87,7 +87,7 @@ export const loginUser = createAsyncThunk<string, loginAttributes>(
     const body = JSON.stringify(login);
 
     try {
-      const res = await axios.post("auth/login", body, config);
+      const res = await axios.post("/auth/login", body, config);
 
       return res.data.token;
     } catch (err: any) {

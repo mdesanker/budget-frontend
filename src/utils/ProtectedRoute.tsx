@@ -7,7 +7,6 @@ interface Children {
 
 const ProtectedRoute = ({ children }: Children) => {
   const { isAuthenticated } = useAppSelector((state) => state.user);
-  console.log(isAuthenticated);
 
   return isAuthenticated ? children : <Navigate to="/" />;
 };

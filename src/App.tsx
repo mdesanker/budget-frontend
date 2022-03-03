@@ -11,8 +11,8 @@ import Account from "./components/views/account/Account";
 import Activity from "./components/views/activity/Activity";
 import ScrollToTop from "./utils/scrollToTop";
 
-axios.defaults.baseURL = "http://localhost:5000";
-// axios.defaults.baseURL = "https://budgettracker-api.herokuapp.com/";
+// axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "https://budgettracker-api.herokuapp.com";
 
 const App = () => {
   return (
