@@ -10,7 +10,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
+      {/* <Router> */}
+      <Router basename="/budget-frontend">
         <App />
       </Router>
     </Provider>

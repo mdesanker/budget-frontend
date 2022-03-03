@@ -57,10 +57,10 @@ const CategoryDonut = () => {
         <button
           id="week"
           onClick={setTimePeriodHandler}
-          className={`donut-btn text-blue-500 ${
+          className={`donut-btn  ${
             timePeriod === "week"
               ? "bg-blue-500 text-white hover:bg-blue-500 hover:text-white"
-              : ""
+              : "text-blue-500"
           }`}
         >
           Week
@@ -68,10 +68,10 @@ const CategoryDonut = () => {
         <button
           id="month"
           onClick={setTimePeriodHandler}
-          className={`donut-btn text-blue-500 ${
+          className={`donut-btn ${
             timePeriod === "month"
               ? "bg-blue-500 text-white hover:bg-blue-500 hover:text-white"
-              : ""
+              : "text-blue-500"
           }`}
         >
           Month
@@ -79,10 +79,10 @@ const CategoryDonut = () => {
         <button
           id="year"
           onClick={setTimePeriodHandler}
-          className={`donut-btn text-blue-500 ${
+          className={`donut-btn ${
             timePeriod === "year"
               ? "bg-blue-500 text-white hover:bg-blue-500 hover:text-white"
-              : ""
+              : "text-blue-500"
           }`}
         >
           Year

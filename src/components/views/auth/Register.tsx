@@ -32,10 +32,8 @@ const Register = () => {
   const formSubmitHandler = (e: React.ChangeEvent<any>): void => {
     e.preventDefault();
     if (password !== passwordConfirm) {
-      console.log("Passwords do not match");
       dispatch(timedAlert({ msg: "Passwords do not match", type: "danger" }));
     } else {
-      console.log(formData);
       dispatch(registerUser(formData));
     }
   };

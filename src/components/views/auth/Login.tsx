@@ -27,7 +27,6 @@ const Login = () => {
 
   const formSubmitHandler = (e: React.ChangeEvent<any>): void => {
     e.preventDefault();
-    // console.log(formData);
     dispatch(loginUser(formData));
     setFormData({
       email: "",
