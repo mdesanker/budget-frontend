@@ -1,6 +1,8 @@
 import React from "react";
 import {
   Chart as ChartJS,
+  LineController,
+  BarController,
   ChartType,
   CategoryScale,
   LinearScale,
@@ -9,6 +11,7 @@ import {
   LineElement,
   Tooltip,
 } from "chart.js";
+// import "chart.js/auto";
 import { Chart } from "react-chartjs-2";
 import { useAppSelector } from "../../../../store/hooks";
 import { RootState } from "../../../../store/store";
@@ -19,6 +22,8 @@ import {
 import { barLineOptions } from "../../../../utils/chartOptions";
 
 ChartJS.register(
+  LineController,
+  BarController,
   CategoryScale,
   LinearScale,
   BarElement,
