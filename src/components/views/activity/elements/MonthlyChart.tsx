@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Chart as ChartJS,
+  ChartType,
   CategoryScale,
   LinearScale,
   BarElement,
@@ -63,7 +64,7 @@ const MonthlyChart = () => {
     labels,
     datasets: [
       {
-        type: "line" as const,
+        type: "line" as ChartType,
         label: "Transactions",
         data: labels.map((_, i) => monthTrasanctionCount(i, yearTransactions)),
         borderColor: "#b91c1c",
@@ -72,7 +73,7 @@ const MonthlyChart = () => {
         yAxisID: "y1",
       },
       {
-        type: "bar" as const,
+        type: "bar" as ChartType,
         label: "Amount",
         data: labels.map((_, i) => monthTransactionTotal(i, yearTransactions)),
         backgroundColor: "#0891b2",

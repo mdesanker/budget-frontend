@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Chart as ChartJS,
+  ChartType,
   CategoryScale,
   LinearScale,
   BarElement,
@@ -37,7 +38,7 @@ const DailyChart = () => {
     labels,
     datasets: [
       {
-        type: "line" as const,
+        type: "line" as ChartType,
         label: "Transactions",
         data: labels.map((_, i) => dayTrasanctionCount(i, weekTransactions)),
         borderColor: "#b91c1c",
@@ -46,7 +47,7 @@ const DailyChart = () => {
         yAxisID: "y1",
       },
       {
-        type: "bar" as const,
+        type: "bar" as ChartType,
         label: "Amount",
         data: labels.map((_, i) => dayTransactionTotal(i, weekTransactions)),
         backgroundColor: "#0891b2",
