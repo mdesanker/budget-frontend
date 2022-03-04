@@ -21,8 +21,6 @@ const TransactionCard = ({ transaction }: TransactionProps) => {
   const { _id, description, merchant, amount, type, date, category } =
     transaction;
 
-  console.log(date);
-
   const formattedDate = date.toLocaleString(DateTime.DATE_MED);
 
   // Handler functions

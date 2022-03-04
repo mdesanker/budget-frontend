@@ -56,7 +56,9 @@ const EditTransactionForm = ({ id }: Props) => {
     const { name, value } = e.target;
 
     setFormData((prevState) => {
-      return { ...prevState, [name]: value };
+      if (name === "date")
+        return { ...prevState, date: DateTime.fromISO(value) };
+      else return { ...prevState, [name]: value };
     });
   };
 
@@ -186,7 +188,7 @@ const EditTransactionForm = ({ id }: Props) => {
           type="date"
           id="date"
           name="date"
-          value={date.toLocaleString()}
+          value={DateTime.fromISO(date.toString()).toISODate()}
           required
           onChange={formChangeHandler}
           className="outline-none text-xl w-full pb-1"
