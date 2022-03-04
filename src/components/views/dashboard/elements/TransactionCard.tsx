@@ -21,7 +21,9 @@ const TransactionCard = ({ transaction }: TransactionProps) => {
   const { _id, description, merchant, amount, type, date, category } =
     transaction;
 
-  const formattedDate = date.toLocaleString(DateTime.DATE_MED);
+  const formattedDate = DateTime.fromISO(date.toString()).toLocaleString(
+    DateTime.DATE_MED
+  );
 
   // Handler functions
   const clickHandler = () => {
