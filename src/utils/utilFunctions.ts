@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import { ITransaction } from "../store/slices/transactionSlice";
 
 export const totalSpent = (transactions: ITransaction[]) => {
@@ -21,7 +22,9 @@ export const dayTransactionTotal = (
   transactions: ITransaction[]
 ) => {
   return transactions
-    .filter((transaction) => new Date(transaction.date).getDay() === day)
+    .filter(
+      (transaction) => DateTime.fromISO(transaction.date.toString()).day === day
+    )
     ?.map((transaction) => transaction.amount)
     ?.reduce((a, b) => a + parseFloat(b), 0);
 };
@@ -31,7 +34,7 @@ export const dayTrasanctionCount = (
   transactions: ITransaction[]
 ) => {
   return transactions.filter(
-    (transaction) => new Date(transaction.date).getDay() === day
+    (transaction) => DateTime.fromISO(transaction.date.toString()).day === day
   )?.length;
 };
 
@@ -40,7 +43,10 @@ export const monthTransactionTotal = (
   transactions: ITransaction[]
 ) => {
   return transactions
-    .filter((transaction) => new Date(transaction.date).getMonth() === month)
+    .filter(
+      (transaction) =>
+        DateTime.fromISO(transaction.date.toString()).month === month
+    )
     ?.map((transaction) => transaction.amount)
     ?.reduce((a, b) => a + parseFloat(b), 0);
 };
@@ -50,7 +56,8 @@ export const monthTrasanctionCount = (
   transactions: ITransaction[]
 ) => {
   return transactions.filter(
-    (transaction) => new Date(transaction.date).getMonth() === month
+    (transaction) =>
+      DateTime.fromISO(transaction.date.toString()).month === month
   )?.length;
 };
 
@@ -70,7 +77,9 @@ export const timespanTransactionFilter = (
 ) => {
   return transactions.filter((transaction: ITransaction) => {
     const today: number = new Date().getTime();
-    const transactionDate: number = new Date(transaction.date).getTime();
+    const transactionDate: number = DateTime.fromISO(
+      transaction.date.toString()
+    ).valueOf();
     return Math.abs(today - transactionDate) < 1000 * 60 * 60 * 24 * days;
   });
 };

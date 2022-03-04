@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { DateTime } from "luxon";
 import { timespanTransactionFilter } from "../../utils/utilFunctions";
 
 // TRANSACTION THUNKS
@@ -98,7 +99,7 @@ interface SubTransaction {
   amount: string;
   type: string;
   category: string;
-  date: string;
+  date: DateTime;
 }
 
 export interface ITransaction extends SubTransaction {

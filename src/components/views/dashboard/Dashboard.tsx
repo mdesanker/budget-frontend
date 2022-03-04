@@ -5,9 +5,11 @@ import {
   getUserTransactions,
 } from "../../../store/slices/transactionSlice";
 import { loadUser } from "../../../store/slices/userSlice";
+import { RootState } from "../../../store/store";
 import Nav from "../../elements/Nav";
 import DashHeader from "./elements/DashHeader";
 import DashTransactions from "./elements/DashTransactions";
+import { DateTime } from "luxon";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -30,6 +32,10 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getUserTransactions());
   }, [user]);
+
+  const { transactions } = useAppSelector(
+    (state: RootState) => state.transactions
+  );
 
   return (
     <main className="mb-16">

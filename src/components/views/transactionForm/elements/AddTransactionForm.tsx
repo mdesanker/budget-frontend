@@ -17,7 +17,7 @@ const AddTransactionForm = () => {
     description: "",
     type: "expense",
     category: "Personal",
-    date: DateTime.now().toISODate(),
+    date: DateTime.now(),
   });
 
   const { amount, merchant, description, type, category, date } = formData;
@@ -26,9 +26,13 @@ const AddTransactionForm = () => {
     const { name, value } = e.target;
 
     setFormData((prevState) => {
-      return { ...prevState, [name]: value };
+      if (name === "date")
+        return { ...prevState, date: DateTime.fromISO(value) };
+      else return { ...prevState, [name]: value };
     });
   };
+
+  console.log(formData.date);
 
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -156,7 +160,7 @@ const AddTransactionForm = () => {
           type="date"
           id="date"
           name="date"
-          value={date}
+          value={date.toISODate()}
           required
           onChange={formChangeHandler}
           className="outline-none text-xl w-full pb-1"

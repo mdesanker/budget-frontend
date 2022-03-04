@@ -36,9 +36,7 @@ const EditTransactionForm = ({ id }: Props) => {
         description: currentTransaction ? currentTransaction.description : "",
         type: currentTransaction ? currentTransaction.type : "expense",
         category: currentTransaction ? currentTransaction.category : "personal",
-        date: currentTransaction
-          ? DateTime.fromISO(currentTransaction.date).toISODate()
-          : DateTime.now().toISODate(),
+        date: currentTransaction ? currentTransaction.date : DateTime.now(),
       });
     }
   }, [currentTransaction]);
@@ -49,7 +47,7 @@ const EditTransactionForm = ({ id }: Props) => {
     description: "",
     type: "expense",
     category: "Personal",
-    date: DateTime.now().toISODate(),
+    date: DateTime.now(),
   });
 
   const { amount, merchant, description, type, category, date } = formData;
@@ -188,7 +186,7 @@ const EditTransactionForm = ({ id }: Props) => {
           type="date"
           id="date"
           name="date"
-          value={date}
+          value={date.toLocaleString()}
           required
           onChange={formChangeHandler}
           className="outline-none text-xl w-full pb-1"
