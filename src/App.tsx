@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/views/auth/Login";
 import Register from "./components/views/auth/Register";
@@ -10,11 +10,19 @@ import EditTransaction from "./components/views/transactionForm/EditTransaction"
 import Account from "./components/views/account/Account";
 import Activity from "./components/views/activity/Activity";
 import ScrollToTop from "./utils/scrollToTop";
+import { useAppDispatch } from "./store/hooks";
+import { loadUser } from "./store/slices/userSlice";
 
 // axios.defaults.baseURL = "http://localhost:5000";
 axios.defaults.baseURL = "https://budgettracker-api.herokuapp.com";
 
 const App = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, []);
+
   return (
     <>
       <ScrollToTop>
