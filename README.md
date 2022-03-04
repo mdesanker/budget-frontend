@@ -12,7 +12,6 @@ The [Budget App](https://mdesanker.github.io/budget-frontend)
 - [Built with](#Built-with)
   - [Frontend](#Frontend)
   - [Backend](#Backend)
-- [Lessons learned](#Lessons-learned)
 - [Challenges](#Challenges)
 - [Links](#Links)
 
@@ -62,15 +61,13 @@ This app was built with the MERN stack in TypeScript.
 - supertest
 - MongoMemoryServer
 
-## Frontend Challenges
+## Challenges
 
-- TypeScript took some getting used to (ongoing), but the ability to type check inputs is very useful
+- Transaction dates - fixing transaction dates being saved as the day before the user selected date took a long time. I think the problem was caused by saving the date as just a "YYY-MM-DD" string, which removed the time zone data. All dates were then treated as UTC when I tried to display them using luxon's DateTime, instead of as UTC-5. I realized I could set DateTime as the type for the date input in my REST API transaction model, so that I could store the full DateTime object, including timezone information. Using this on the front end was tricky at first until I realized that the TypeScript type declaration was telling the IDE that `transaction.date` (an ISO string) was a DateTime object, despite `typeof transaction.date === "string"`. I found a work around by converting transaction.date to a string explicitly, then converting this back to a DateTime object so I could use luxon methods to manipulate the date: `DateTime.fromISO(transaction.date.toString()).toISODate()`.
 
-- React testing library - this will take more practice from me. Will implement in smaller projects to increase familiarity.
+  (this is my best guess at what was happening)
 
-- Transaction dates - transactions are saved as the day before the selected date and I have not figured out how to fix yet. I believe this is because the date is saved without the timezone, so when the date is displayed its read as if the time zone is UTC, which means it shows as the day before for ET.
-
-- Filtering transaction data - I used a single API call to fetch user transactions from the DB. Then I filtered the transactions into week, month, and year lists in redux extrareducer functions so that they could be used in the dashboard and activity views. ChartJS made it relatively simple to use a function to map the days of the week or months of the year to filter the selected transactions. This is approach would be a lot more resource intensive in a large app with a massive amount of transactions. In that case, it would be better to use API endpoints to query the database for specific transactions.
+- Filtering transaction data - I used a single API call to fetch user transactions from the DB. Then I filtered the transactions into week, month, and year lists in redux extrareducers with helper functions so that they could be used in the dashboard and activity views. ChartJS made it relatively simple to use a function to map the days of the week or months of the year to filter the selected transactions. This is approach would be a lot more resource intensive in a large app with a massive amount of transactions. In that case, it would be better to use API endpoints to query the database for specific transactions.
 
 ## Links
 
