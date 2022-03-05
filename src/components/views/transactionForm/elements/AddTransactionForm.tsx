@@ -32,8 +32,6 @@ const AddTransactionForm = () => {
     });
   };
 
-  console.log(formData.date);
-
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     dispatch(addTransaction(formData));
@@ -135,7 +133,7 @@ const AddTransactionForm = () => {
         <select
           name="category"
           id="category"
-          className="outline-none bg-transparent text-xl pb-1"
+          className="outline-none bg-white text-xl pb-1"
           value={category}
           required
           onChange={formChangeHandler}

@@ -31,13 +31,17 @@ This app was created as a practice exercise to use TypeScript with React and Exp
 
 1. Log in or register for an account
 
-   - Email will NOT be used to contact you
-
 2. Dashboard view - view transactions over last 7 or 30 days. Add transactions. Select individual transactions to edit or delete.
 
 3. Activity view - view spending trends displayed with three different charts.
 
 4. Account view - view user name, email, and account creation date. Edit user name and email. Delete account.
+
+<img src="./img/login.png" alt="Login page" height="300px" />
+<img src="./img/dashboard.png" alt="Dashboard" height="300px" />
+<img src="./img/addTransactionForm.png" alt="Add transaction form" height="300px" />
+<img src="./img/activityView.png" alt="Activity view" height="300px" />
+<img src="./img/accountView.png" alt="Account view" height="300px" />
 
 ## Built with
 

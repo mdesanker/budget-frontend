@@ -163,7 +163,7 @@ const EditTransactionForm = ({ id }: Props) => {
         <select
           name="category"
           id="category"
-          className="outline-none bg-transparent text-xl pb-1"
+          className="outline-none bg-white text-xl pb-1"
           value={category}
           required
           onChange={formChangeHandler}
