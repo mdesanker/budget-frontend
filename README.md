@@ -4,6 +4,10 @@ A tracking app for expenses.
 
 The [Budget App](https://mdesanker.github.io/budget-frontend)
 
+**Demo**
+
+<img src="./demo/budget_demo.gif" alt="demo video" width="auto" height="300px" />
+
 ## Table of Contents
 
 - [Description](#Description)
@@ -37,11 +41,11 @@ This app was created as a practice exercise to use TypeScript with React and Exp
 
 4. Account view - view user name, email, and account creation date. Edit user name and email. Delete account.
 
-<img src="./img/login.png" alt="Login page" height="300px" />
-<img src="./img/dashboard.png" alt="Dashboard" height="300px" />
-<img src="./img/addTransactionForm.png" alt="Add transaction form" height="300px" />
-<img src="./img/activityView.png" alt="Activity view" height="300px" />
-<img src="./img/accountView.png" alt="Account view" height="300px" />
+<img src="./demo/login.png" alt="Login page" height="300px" />
+<img src="./demo/dashboard.png" alt="Dashboard" height="300px" />
+<img src="./demo/addTransactionForm.png" alt="Add transaction form" height="300px" />
+<img src="./demo/activityView.png" alt="Activity view" height="300px" />
+<img src="./demo/accountView.png" alt="Account view" height="300px" />
 
 ## Built with
 
