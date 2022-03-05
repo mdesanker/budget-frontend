@@ -4,7 +4,7 @@ A tracking app for expenses.
 
 The [Budget App](https://mdesanker.github.io/budget-frontend)
 
-**Demo**
+### Demo
 
 <img src="./demo/budget_demo.gif" alt="demo video" width="auto" height="300px" />
 
@@ -17,6 +17,7 @@ The [Budget App](https://mdesanker.github.io/budget-frontend)
   - [Frontend](#Frontend)
   - [Backend](#Backend)
 - [Challenges](#Challenges)
+- [Credits](#Credits)
 - [Links](#Links)
 
 ## Description
@@ -40,12 +41,6 @@ This app was created as a practice exercise to use TypeScript with React and Exp
 3. Activity view - view spending trends displayed with three different charts.
 
 4. Account view - view user name, email, and account creation date. Edit user name and email. Delete account.
-
-<img src="./demo/login.png" alt="Login page" height="300px" />
-<img src="./demo/dashboard.png" alt="Dashboard" height="300px" />
-<img src="./demo/addTransactionForm.png" alt="Add transaction form" height="300px" />
-<img src="./demo/activityView.png" alt="Activity view" height="300px" />
-<img src="./demo/accountView.png" alt="Account view" height="300px" />
 
 ## Built with
 
@@ -76,6 +71,10 @@ This app was built with the MERN stack in TypeScript.
   (this is my best guess at what was happening)
 
 - Filtering transaction data - I used a single API call to fetch user transactions from the DB. Then I filtered the transactions into week, month, and year lists in redux extrareducers with helper functions so that they could be used in the dashboard and activity views. ChartJS made it relatively simple to use a function to map the days of the week or months of the year to filter the selected transactions. This is approach would be a lot more resource intensive in a large app with a massive amount of transactions. In that case, it would be better to use API endpoints to query the database for specific transactions.
+
+## Credits
+
+- favicon: [Flaticon](https://www.flaticon.com/free-icon/budgeting_2228858?term=budget&page=1&position=1&page=1&position=1&related_id=2228858&origin=search)
 
 ## Links
 
