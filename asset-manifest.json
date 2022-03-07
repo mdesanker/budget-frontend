@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/budget-frontend/static/css/main.ee615fc6.css",
-    "main.js": "/budget-frontend/static/js/main.6e3d008a.js",
+    "main.js": "/budget-frontend/static/js/main.41812804.js",
     "index.html": "/budget-frontend/index.html",
     "main.ee615fc6.css.map": "/budget-frontend/static/css/main.ee615fc6.css.map",
-    "main.6e3d008a.js.map": "/budget-frontend/static/js/main.6e3d008a.js.map"
+    "main.41812804.js.map": "/budget-frontend/static/js/main.41812804.js.map"
   },
   "entrypoints": [
     "static/css/main.ee615fc6.css",
-    "static/js/main.6e3d008a.js"
+    "static/js/main.41812804.js"
   ]
 }
