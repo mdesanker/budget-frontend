@@ -102,7 +102,7 @@ export const loginUser = createAsyncThunk<string, loginAttributes>(
 
 export const loadUser = createAsyncThunk<User>(
   "user/load",
-  async (_, { dispatch, rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
@@ -112,10 +112,6 @@ export const loadUser = createAsyncThunk<User>(
 
       return res.data;
     } catch (err: any) {
-      const errors = err.response.data.errors;
-      for (let error of errors) {
-        dispatch(timedAlert({ ...error, type: "danger" }));
-      }
       return rejectWithValue(err.response.data);
     }
   }
